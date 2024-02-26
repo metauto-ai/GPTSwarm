@@ -1,0 +1,54 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Pytest GPTSwarm
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  pytest_test:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 5
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        lfs: true
+
+    - name: Checkout LFS objects
+      run: git lfs pull
+
+    - name: Set up Python environment and install dependencies
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+
+    - uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ hashFiles('requirements_py310_linux.txt') }}
+
+    - name: Add conda to system path
+      run: |
+        # $CONDA is an environment variable pointing to the root of the miniconda directory
+        echo $CONDA/bin >> $GITHUB_PATH
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements_py310_linux.txt
+  
+    - name: Test with pytest
+      env:
+        GOOGLE_API_KEY: "${{ secrets.GOOGLE_API_KEY }}"
+        GOOGLE_CSE_ID: "${{ secrets.GOOGLE_CSE_ID }}"
+      run: |
+        pytest -s -m mock_llm test/
