@@ -1,0 +1,11 @@
+mode: "math"
+result_dir: result
+candidates_path: ./config/crosswords/agents_ToT.json
+dataset_path: ./datasets/crosswords/mini0505.json #./datasets/gaia/val_files/metadata.jsonl
+llm:  "gpt-4-1106-preview" #"gpt-3.5-turbo-1106" #
+max_iters: 20
+num_agents: 1
+MA_interface: "QAChooseOperations"
+aggregation: "Identity"
+experiment_name: "ToT"
+n_ports: 0

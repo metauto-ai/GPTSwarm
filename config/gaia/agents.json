@@ -1,0 +1,19 @@
+{
+    "agents": [
+        {
+            "name": "a general AI assistant",
+            "profile": "You are designed to answer questions.",
+            "strategy": "IO"
+        },
+        {
+            "name": "a general AI assistant number 2",
+            "profile": "You are designed to answer questions.",
+            "strategy": "ToT"
+        },
+        {
+            "name": "a general AI assistant number 3",
+            "profile": "You are designed to answer questions.",
+            "strategy": "ForwardPlanning"
+        }
+    ]
+}
