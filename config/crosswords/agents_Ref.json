@@ -1,0 +1,9 @@
+{
+    "agents": [
+        {
+            "name": "a general AI assistant",
+            "profile": "",
+            "strategy": "CWRelection"
+        }
+    ]
+}

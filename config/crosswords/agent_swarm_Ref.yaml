@@ -1,0 +1,11 @@
+mode: "math"
+result_dir: result
+candidates_path: ./config/crosswords/agents_Ref.json
+dataset_path: ./datasets/crosswords/mini0505.json
+llm:  "gpt-4-1106-preview" #"gpt-3.5-turbo-1106" 
+max_iters: 36
+num_agents: 1
+MA_interface: "QAChooseOperations"
+aggregation: "Identity"
+experiment_name: "Ref2"
+n_ports: 0

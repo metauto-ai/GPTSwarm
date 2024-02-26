@@ -1,0 +1,14 @@
+mode: "Level2"
+result_dir: result
+candidates_path: ./config/gaia/agents.json
+dataset_name: "gaia"
+dataset_path: ./datasets/gaia/level_2_val.json #./datasets/gaia/val_files/metadata.jsonl
+affiliated_files_path: "./datasets/gaia/val_files/"
+llm:  "gpt-4-1106-preview" #"gpt-3.5-turbo-1106" #
+max_iters: 8
+num_agents: 1
+level: 1
+MA_interface: "QAChooseOperations"
+aggregation: "Identity"
+experiment_name: "IO"
+n_ports: 0
