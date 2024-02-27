@@ -1,0 +1,1 @@
+In 2050, AGI is widely used in daily life. SwarmX, a general-purpose AGI, originated from GPTSwarm.
