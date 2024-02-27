@@ -1,5 +1,5 @@
 [![Page](https://img.shields.io/badge/Project-Page-lightgreen.svg)](https://gptswarm.org)
-[![arXiv](https://img.shields.io/badge/arXiv-Paper-gold.svg)](https://arxiv.org/pdf/2305.17066.pdf)
+[![arXiv](https://img.shields.io/badge/arXiv-Paper-gold.svg)](https://arxiv.org/abs/2402.16823)
 [![License](https://img.shields.io/badge/License-MIT-orange.svg)](https://github.com/mczhuge/GPTSwarm/blob/main/LICENSE)
 [![Issues](https://img.shields.io/github/issues/mczhuge/Kaleido-BERT?color=00afaa)](https://github.com/metauto-ai/gptswarm/issues)
 [![Twitter Follow](https://img.shields.io/twitter/follow/AI_KAUST?style=social)](https://twitter.com/AI_KAUST)
@@ -126,11 +126,13 @@ Please read our [developer document](DEVELOPMENT.md) if you are interested in co
 ## Citation
 Please cite our paper if you find the library useful or interesting.
 ```
-@article{zhuge2024gptswarm,
-    title={Language Agents as Optimizable Graphs},
-    author={Zhuge, Mingchen and Wang, Wenyi and Kirsch, Louis and Faccio, Francesco and Khizbulin, Dmitrii and Schmidhuber, Juergen},
-    journal={Technical Report},
-    year={2024}
+@misc{zhuge2024language,
+      title={Language Agents as Optimizable Graphs}, 
+      author={Mingchen Zhuge and Wenyi Wang and Louis Kirsch and Francesco Faccio and Dmitrii Khizbullin and Jurgen Schmidhuber},
+      year={2024},
+      eprint={2402.16823},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI}
 }
 ```
 
