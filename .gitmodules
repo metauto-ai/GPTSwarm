@@ -1,3 +1,0 @@
-[submodule "datasets/GSM8K/grade-school-math"]
-	path = datasets/GSM8K/grade-school-math
-	url = https://github.com/openai/grade-school-math.git
