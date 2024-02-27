@@ -26,7 +26,7 @@ Here is the edge optimization process that updates edge probabilities toward imp
 
 ## About GPTSwarm
 
-<img src="assets/gpt_swarm.png" alt="Framework" width="800">
+<img src="assets/gpt_swarm.png" alt="Framework" width="799">
 
 At a granular level, GPTSwarm is a library that includes the following components: 
 
