@@ -14,7 +14,9 @@
 * It lets you build LLM-based agents from graphs.
 * It enables the customized and automatic self-organization of agent swarms with self-improvement capabilities.
 
-Here is our [academic paper](https://arxiv.org/abs/2402.16823).
+## News
+
+🌼 Our [academic paper](https://arxiv.org/abs/2402.16823) is released.
 
 ## Edge optimization example
 
