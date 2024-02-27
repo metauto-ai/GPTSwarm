@@ -6,6 +6,7 @@ from swarm.graph.swarm import Swarm
 from swarm.environment.operations.final_decision import MergingStrategy
 from experiments.evaluator.evaluator import Evaluator
 from experiments.evaluator.datasets.mmlu_dataset import MMLUDataset
+from datasets.MMLU.download import download
 
 
 def parse_args():
@@ -73,6 +74,8 @@ async def main():
         )
 
     tag = f"{domain}_{swarm_name}_{strategy.name}_{mode}"
+
+    download()
 
     dataset_train = MMLUDataset('dev')
     dataset_val = MMLUDataset('val')

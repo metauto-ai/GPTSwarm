@@ -5,6 +5,13 @@ from swarm.graph.swarm import Swarm
 from swarm.environment.operations.final_decision import MergingStrategy
 from experiments.evaluator.evaluator import Evaluator
 from experiments.evaluator.datasets.mmlu_dataset import MMLUDataset
+from datasets.MMLU.download import download
+
+
+@pytest.fixture
+def mmlu_data():
+    download()
+    return None
 
 
 def make_swarm(model_name: Optional[str]) -> Swarm:
@@ -26,7 +33,7 @@ def make_swarm(model_name: Optional[str]) -> Swarm:
     pytest.param('mock', marks=pytest.mark.mock_llm),
     pytest.param(None),
 ])
-async def test_evaluator(model_name):
+async def test_evaluator(model_name, mmlu_data):
     swarm = make_swarm(model_name)
     dataset = MMLUDataset('dev')
     evaluator = Evaluator(swarm, dataset, dataset, model_name=model_name)
@@ -49,7 +56,7 @@ async def test_evaluator(model_name):
     pytest.param('mock', marks=pytest.mark.mock_llm),
     pytest.param(None),
 ])
-async def test_optimization(model_name):
+async def test_optimization(model_name, mmlu_data):
     swarm = make_swarm(model_name)
     dataset = MMLUDataset('dev')
     evaluator = Evaluator(swarm, dataset, dataset, model_name=model_name)
@@ -64,7 +71,7 @@ async def test_optimization(model_name):
     assert isinstance(score, float)
 
 
-def test_dataset():
+def test_dataset(mmlu_data):
     for split in ('dev', 'val', 'test'):
         dataset = MMLUDataset(split)
         print(f"{split=} {len(dataset)=}")
