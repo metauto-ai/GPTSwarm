@@ -16,7 +16,7 @@
 
 ## News
 
-🌼 Our [academic paper](https://arxiv.org/abs/2402.16823) is released.
+🚀 Feb 27, 2024: Our academic paper: [Language Agents as Optimizable Graphs](https://arxiv.org/abs/2402.16823) is released.
 
 ## Edge optimization example
 
