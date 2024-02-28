@@ -89,9 +89,7 @@ Check out the minimal Swarm example in Colab here: [![Open In Colab](https://col
 
 See how to create a custom Agent and run a Swarm with it here: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mczhuge/GPTSwarm/blob/main/notebooks/demo_custom_agent.ipynb).
 
-Watch the following for an example of how to run the notebooks.
-
-<!-- https://github.com/mczhuge/GPTSwarm/assets/100462607/a05f78b7-5f9d-4762-8337-973702ce4493 -->
+Watch the following Youtube video for an example of how to run the notebooks.
 
 [<img src="assets/youtube_preview.png" width="75%">](https://www.youtube.com/watch?v=QOLQse5ZBV8&t=8s&ab_channel=GPTSwarm "Running swarm inference")
 
