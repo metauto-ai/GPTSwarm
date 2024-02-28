@@ -1,7 +1,7 @@
 [![Page](https://img.shields.io/badge/Project-Page-lightgreen.svg)](https://gptswarm.org)
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-gold.svg)](https://arxiv.org/abs/2402.16823)
 [![License](https://img.shields.io/badge/License-MIT-orange.svg)](https://github.com/mczhuge/GPTSwarm/blob/main/LICENSE)
-[![Issues](https://img.shields.io/github/issues/mczhuge/Kaleido-BERT?color=00afaa)](https://github.com/metauto-ai/gptswarm/issues)
+[![Issues](https://img.shields.io/github/issues/metauto-aiGPTSwarm?color=00afaa)](https://github.com/metauto-ai/gptswarm/issues)
 [![Twitter Follow](https://img.shields.io/twitter/follow/AI_KAUST?style=social)](https://twitter.com/AI_KAUST)
 [![Wechat](https://img.shields.io/badge/Wechat-7BB32E?logo=wechat&logoColor=white)](https://metauto.ai/images/wechat.jpeg)
 
