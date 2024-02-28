@@ -93,7 +93,7 @@ Watch the following for an example of how to run the notebooks.
 
 <!-- https://github.com/mczhuge/GPTSwarm/assets/100462607/a05f78b7-5f9d-4762-8337-973702ce4493 -->
 
-[<img src="assets/youtube_preview.png" width="50%">]([https://www.youtube.com/watch?v=Hc79sDi3f0U](https://www.youtube.com/watch?v=QOLQse5ZBV8&t=8s&ab_channel=GPTSwarm) "Running swarm inference")
+[<img src="assets/youtube_preview.png" width="50%">](https://www.youtube.com/watch?v=QOLQse5ZBV8&t=8s&ab_channel=GPTSwarm "Running swarm inference")
 
 
 **🛠 See [our experiments](https://github.com/mczhuge/GPTSwarm/tree/main/experiments) for more advanced use of our framework.**
