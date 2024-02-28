@@ -8,6 +8,10 @@ def get_combine_materials(materials: Dict[str, Any], avoid_vague=True) -> str:
     for key, value in materials.items():
         if "No useful information from WebSearch" in value:
             continue
+        if isinstance(value, list):
+            value = "\n".join(value)
+        if not (isinstance(value, str) and isinstance(key, str)):
+            continue
         value = value.strip("\n").strip()
         if key != 'task' and value:
             question += f"\n\nReference information for {key}:" + \
