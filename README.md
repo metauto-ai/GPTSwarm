@@ -129,13 +129,11 @@ Please read our [developer document](DEVELOPMENT.md) if you are interested in co
 ## Citation
 Please cite our paper if you find the library useful or interesting.
 ```
-@misc{zhuge2024language,
-      title={Language Agents as Optimizable Graphs}, 
-      author={Mingchen Zhuge and Wenyi Wang and Louis Kirsch and Francesco Faccio and Dmitrii Khizbullin and Jurgen Schmidhuber},
-      year={2024},
-      eprint={2402.16823},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI}
+@article{zhuge2024language,
+  title={Language Agents as Optimizable Graphs},
+  author={Zhuge, Mingchen and Wang, Wenyi and Kirsch, Louis and Faccio, Francesco and Khizbullin, Dmitrii and Schmidhuber, Jurgen},
+  journal={arXiv preprint arXiv:2402.16823},
+  year={2024}
 }
 ```
 
