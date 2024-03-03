@@ -26,7 +26,7 @@ dependencies = {file = ["requirements_py310_macos.txt"]}
 dev = ["black", "bumpver", "isort", "pip-tools", "pytest"]
 
 [project.urls]
-Homepage = "https://github.com/metauto-ai/GPTSwarm.git"
+Homepage = "https://github.com/metauto-ai/GPTSwarm"
 Issues = "https://github.com/metauto-ai/GPTSwarm/issues"
 
 [build-system]
