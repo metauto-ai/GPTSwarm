@@ -18,6 +18,7 @@
 ## News
 
 ✨ March 3, 2024: GPTSwarm support PyPI: ``pip install gptswarm``.
+
 🚀 Feb 27, 2024: Our academic paper: [Language Agents as Optimizable Graphs](https://arxiv.org/abs/2402.16823) is released.
 
 ## Edge optimization example
