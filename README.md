@@ -1,6 +1,6 @@
 [![Page](https://img.shields.io/badge/Project-Page-lightgreen.svg)](https://gptswarm.org)
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-gold.svg)](https://arxiv.org/abs/2402.16823)
-[![License](https://img.shields.io/badge/License-MIT-orange.svg)](https://github.com/mczhuge/GPTSwarm/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-orange.svg)](https://github.com/metauto-ai/GPTSwarm/blob/main/LICENSE)
 [![Issues](https://img.shields.io/github/issues/metauto-ai/GPTSwarm?color=00afaa)](https://github.com/metauto-ai/gptswarm/issues)
 [![Twitter Follow](https://img.shields.io/twitter/follow/AI_KAUST?style=social)](https://twitter.com/AI_KAUST)
 [![Wechat](https://img.shields.io/badge/Wechat-7BB32E?logo=wechat&logoColor=white)](https://metauto.ai/images/wechat.jpeg)
@@ -85,16 +85,16 @@ inputs = {"task": task, "files": files}
 danswer = swarm.run(inputs)
 ```
 
-Check out the minimal Swarm example in Colab here: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mczhuge/GPTSwarm/blob/main/notebooks/demo_swarm.ipynb).
+Check out the minimal Swarm example in Colab here: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/metauto-ai/GPTSwarm/blob/main/notebooks/demo_swarm.ipynb).
 
-See how to create a custom Agent and run a Swarm with it here: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mczhuge/GPTSwarm/blob/main/notebooks/demo_custom_agent.ipynb).
+See how to create a custom Agent and run a Swarm with it here: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/metauto-ai/GPTSwarm/blob/main/notebooks/demo_custom_agent.ipynb).
 
 Here is a Youtube video on how to run the demo notebooks:
 
 [<img src="assets/youtube_preview.png" width="75%">](https://www.youtube.com/watch?v=QOLQse5ZBV8&t=8s&ab_channel=GPTSwarm "Running swarm inference")
 
 
-**🛠 See [our experiments](https://github.com/mczhuge/GPTSwarm/tree/main/experiments) for more advanced use of our framework.**
+**🛠 See [our experiments](https://github.com/metauto-ai/GPTSwarm/tree/main/experiments) for more advanced use of our framework.**
 
 ## Class diagram
 
