@@ -59,3 +59,15 @@ open htmlcov/index.html
 ## Packaging instructions
 
 https://packaging.python.org/en/latest/tutorials/packaging-projects/
+
+### Poetry
+
+```bash
+poetry config pypi-token.pypi "<your-token>"
+poetry config repositories.test-pypi https://test.pypi.org/legacy/
+poetry config pypi-token.test-pypi "<your-token>"
+poetry publish -r test-pypi
+poetry publish
+```
+
+More see [here](https://stackoverflow.com/a/72524326/23308099).
