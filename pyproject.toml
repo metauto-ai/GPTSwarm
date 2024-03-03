@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "gptswarm"
-version = "0.1.3a2"
+version = "0.1.3a3"
 description = "GPTSwarm: Language Agents as Optimizable Graphs"
 authors = [
   "Mingchen Zhuge <mczhuge@gmail.com>",
@@ -62,6 +62,7 @@ tqdm = "^4.66.1"
 transformers = "^4.36.2"
 wikipedia = "^1.4.0"
 astunparse = "^1.6.3"
+torch = "^2.1.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0.2"
