@@ -45,7 +45,7 @@ At a granular level, GPTSwarm is a library that includes the following component
 **Clone the repo**
 
 ```bash
-git clone --recurse-submodules https://github.com/mczhuge/GPTSwarm.git
+git clone https://github.com/metauto-ai/GPTSwarm.git
 cd GPTSwarm/
 ```
 
