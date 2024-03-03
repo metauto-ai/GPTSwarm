@@ -53,7 +53,8 @@ cd GPTSwarm/
 ```
 conda create -n swarm python=3.10
 conda activate swarm
-pip install -r requirements_py310_<linux|macos>.txt
+pip install poetry
+poetry install
 ```
 
 **You should add API keys in `.env.template` and change its name to `.env`**
