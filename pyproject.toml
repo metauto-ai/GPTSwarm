@@ -1,37 +1,74 @@
-[project]
-name = "gptswarm"
-version = "0.1"
-authors = [
-  { name="Mingchen Zhuge", email="mczhuge@gmail.com"},
-  { name="Wenyi Wang", email="wenyi.wang@kaust.edu.sa"},
-  { name="Louis Kirsch"},
-  { name="Francesco Faccio", email="francesco.faccio@kaust.edu.sa"},
-  { name="Dmitrii Khizbullin", email="dmitrii.khizbullin@gmail.com"},
-  { name="Jürgen Schmidhuber"},
-]
-description = "GPTSwarm: Language Agents as Optimizable Graphs"
-readme = "README.md"
-requires-python = ">=3.9"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-]
-dynamic = ["dependencies"]
-
-[tool.setuptools.dynamic]
-dependencies = {file = ["requirements_py310_macos.txt"]}
-
-[project.optional-dependencies]
-dev = ["black", "bumpver", "isort", "pip-tools", "pytest"]
-
-[project.urls]
-Homepage = "https://github.com/metauto-ai/GPTSwarm"
-Issues = "https://github.com/metauto-ai/GPTSwarm/issues"
-
 [build-system]
-requires = ["setuptools>=61.0.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
-[tool.setuptools.packages.find]
-where = ["swarm"]
+[tool.poetry]
+name = "gptswarm"
+version = "0.1.2"
+description = "GPTSwarm: Language Agents as Optimizable Graphs"
+authors = [
+  "Mingchen Zhuge <mczhuge@gmail.com>",
+  "Wenyi Wang <wenyi.wang@kaust.edu.sa>",
+  "Louis Kirsch",
+  "Francesco Faccio <francesco.faccio@kaust.edu.sa>",
+  "Dmitrii Khizbullin <dmitrii.khizbullin@gmail.com>",
+  "Jürgen Schmidhuber",
+]
+readme = "README.md"
+packages = [
+    { include = "swarm" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+aiohttp = "^3.9.0"
+apscheduler = "^3.10.4"
+arxiv = "^2.0.0"
+beautifulsoup4 = "^4.12.2"
+charset-normalizer = "^3.3.2"
+class-registry = "^2.1.2"
+docx = "^0.2.4"
+fastapi = "0.109.2"
+func-timeout = "^4.3.5"
+google-api-python-client = "^2.111.0"
+gradio = "^4.11.0"
+httpx = "^0.25.2"
+jsonlines = "^4.0.0"
+loguru = "0.7.2"
+markdown = "^3.5.1"
+networkx = "3.2.1"
+openai = "^1.6.0"
+opencv-python = "^4.8.1.78"
+openpyxl = "^3.1.2"
+pandas = "^2.1.4"
+pydantic = "^2.5.3"
+pylatexenc = "^2.10"
+pypdf2 = "^3.0.1"
+python-dotenv = "1.0.0"
+python-docx = "^1.1.0"
+python-pptx = "0.6.23"
+pytube = "15.0.0"
+pyvis = "0.3.2"
+pyyaml = "6.0.1"
+regex = "2023.10.3"
+requests = "^2.31.0"
+scipy = "^1.12.0"
+seaborn = "^0.13.1"
+sentence-transformers = "2.2.2"
+shortuuid = "1.0.11"
+tenacity = "^8.2.3"
+termcolor = "^2.4.0"
+tqdm = "^4.66.1"
+transformers = "^4.36.2"
+wikipedia = "^1.4.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.2"
+setuptools = "^69.1.1"
+pytest-asyncio = "^0.23.5"
+build = "^1.1.1"
+coverage = "^7.4.3"
+tensorboard = "^2.16.2"
+twine = "^5.0.0"
+poetry-core = "^1.9.0"
+poetry = "^1.8.2"
