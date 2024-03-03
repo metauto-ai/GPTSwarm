@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "gptswarm"
-version = "0.1.3a1"
+version = "0.1.3a2"
 description = "GPTSwarm: Language Agents as Optimizable Graphs"
 authors = [
   "Mingchen Zhuge <mczhuge@gmail.com>",
@@ -40,7 +40,7 @@ networkx = "3.2.1"
 openai = "^1.6.0"
 opencv-python = "^4.8.1.78"
 openpyxl = "^3.1.2"
-pandas = "^2.1.4"
+pandas = "^1.5.3"
 pydantic = "^2.5.3"
 pylatexenc = "^2.10"
 pypdf2 = "^3.0.1"

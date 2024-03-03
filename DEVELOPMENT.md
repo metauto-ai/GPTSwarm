@@ -68,6 +68,8 @@ poetry config repositories.test-pypi https://test.pypi.org/legacy/
 poetry config pypi-token.test-pypi "<your-token>"
 poetry publish -r test-pypi
 poetry publish
+
+pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple gptswarm==0.1.3a1
 ```
 
 More see [here](https://stackoverflow.com/a/72524326/23308099).
