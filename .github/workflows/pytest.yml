@@ -54,5 +54,5 @@ jobs:
       run: |
         poetry run coverage run -m pytest -s -m mock_llm
 
-    - name: Coveralls
+    - name: Upload coverage to Coveralls
       uses: coverallsapp/github-action@v2
