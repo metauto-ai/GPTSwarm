@@ -1,10 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-Author: mczhuge
-Review  :
-File: price.py
-"""
 
 from swarm.utils.log import swarmlog
 from swarm.utils.globals import Cost
