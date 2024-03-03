@@ -52,4 +52,7 @@ jobs:
         GOOGLE_API_KEY: "${{ secrets.GOOGLE_API_KEY }}"
         GOOGLE_CSE_ID: "${{ secrets.GOOGLE_CSE_ID }}"
       run: |
-        poetry run pytest -s -m mock_llm test/
+        poetry run coverage run -m pytest -s -m mock_llm
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@v2
