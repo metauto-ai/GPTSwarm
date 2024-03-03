@@ -53,3 +53,6 @@ jobs:
         GOOGLE_CSE_ID: "${{ secrets.GOOGLE_CSE_ID }}"
       run: |
         poetry run pytest -s -m mock_llm test/
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@v2

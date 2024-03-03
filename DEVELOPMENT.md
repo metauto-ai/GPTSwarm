@@ -66,6 +66,9 @@ https://packaging.python.org/en/latest/tutorials/packaging-projects/
 poetry config pypi-token.pypi "<your-token>"
 poetry config repositories.test-pypi https://test.pypi.org/legacy/
 poetry config pypi-token.test-pypi "<your-token>"
+
+poetry version prerelease
+poetry build
 poetry publish -r test-pypi
 poetry publish
 
