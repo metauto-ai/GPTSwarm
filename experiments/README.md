@@ -1,29 +1,5 @@
 ## Run the following commands to reproduce our experiments in the paper
 
-### Download dataset
-
-The datasets are stored in git LFS. If git LFS is already installed in your system, no action is required. To check if git LFS is installed, run:
-```bash
-git lfs
-```
-If you see an error message, install git LFS via this instruction](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage). Then run:
-```bash
-git lfs install
-git lfs pull
-```
-
-### Include necessary submodules
-
-If the project has already been cloned:
-```bash
-git submodule init
-git submodule update
-```
-or a one-liner:
-```bash
-git submodule update --init --recursive
-```
-
 ### **MMLU**
 Run the baseline:
 ```bash
