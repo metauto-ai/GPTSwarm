@@ -52,4 +52,4 @@ jobs:
         GOOGLE_API_KEY: "${{ secrets.GOOGLE_API_KEY }}"
         GOOGLE_CSE_ID: "${{ secrets.GOOGLE_CSE_ID }}"
       run: |
-        pytest -s -m mock_llm test/
+        poetry run pytest -s -m mock_llm test/
