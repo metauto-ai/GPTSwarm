@@ -58,10 +58,10 @@ Test specific function:
 pytest -s test/swarm/graph/test_swarm.py -k 'test_raises'
 ```
 
-Running any of the above commands with poerty will auto activate the virtual environment:
+Running any of the above commands with poetry will auto activate the virtual environment:
 
 ```bash
-poerty run pytest -m mock_llm
+poetry run pytest -m mock_llm
 ```
 
 ## Run code coverage
