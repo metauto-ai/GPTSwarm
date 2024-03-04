@@ -2,6 +2,25 @@
 
 ## Configure the package for local development
 
+### New way (poetry)
+
+Install needed packages and GPTSwarm into the current environment.
+```bash
+poetry install
+```
+
+Install needed and uninstall not listed packages:
+```bash
+poetry install --sync
+```
+
+If dev packages not installed for some reason:
+```bash
+poetry install --with=dev --sync
+```
+
+### Old way (setuptools)
+
 The following command installs the `gptswarm` package as a symbolic link to the current github repo clone. All edits to the repo will be immediately reflected in the "installed" package.
 ```bash
 pip insall -e .
@@ -37,6 +56,12 @@ pytest -s test/
 Test specific function:
 ```bash
 pytest -s test/swarm/graph/test_swarm.py -k 'test_raises'
+```
+
+Running any of the above commands with poerty will auto activate the virtual environment:
+
+```bash
+poerty run pytest -m mock_llm
 ```
 
 ## Run code coverage

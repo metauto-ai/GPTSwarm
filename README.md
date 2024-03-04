@@ -4,6 +4,7 @@
 [![Issues](https://img.shields.io/github/issues/metauto-ai/GPTSwarm?color=00afaa)](https://github.com/metauto-ai/gptswarm/issues)
 [![Twitter Follow](https://img.shields.io/twitter/follow/AI_KAUST?style=social)](https://twitter.com/AI_KAUST)
 [![Wechat](https://img.shields.io/badge/Wechat-7BB32E?logo=wechat&logoColor=white)](https://metauto.ai/images/wechat.jpeg)
+[![Coverage Status](https://coveralls.io/repos/github/metauto-ai/GPTSwarm/badge.svg?branch=main)](https://coveralls.io/github/metauto-ai/GPTSwarm?branch=main)
 
 <p align="left">
 <a href=""><img src="swarm/utils/assets/logo.png" alt="GPTSwarm" width="430px"></a>
