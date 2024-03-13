@@ -98,7 +98,7 @@ Here is a Youtube video on how to run the demo notebooks:
 [<img src="assets/youtube_preview.png" width="75%">](https://www.youtube.com/watch?v=QOLQse5ZBV8&t=8s&ab_channel=GPTSwarm "Running swarm inference")
 
 
-**🛠 See [our experiments](https://github.com/metauto-ai/GPTSwarm/tree/main/experiments) for more advanced use of our framework.**
+** 🔥🔥🔥 See [our experiments](https://github.com/metauto-ai/GPTSwarm/tree/main/experiments) for more advanced use of our framework.**
 
 ## Class diagram
 
