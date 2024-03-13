@@ -48,7 +48,7 @@ It received the following feedback:
 {negative_example['feedback']}
 """
             tasks.append(self.llm.agen([Message(role="user", content=meta_prompt), 
-                                        Message(role='user', content=f"Identify a problem in {self.operation_description} from the given example and suggest how to prevent it without mentioning the specific example. Responde only one sentence.")], 
+                                        Message(role='user', content=f"Identify a problem in {self.operation_description} from the given example and suggest how to prevent it without mentioning the specific example. Respond only one sentence.")], 
                                         max_tokens=100))
     
         responds = await asyncio.gather(*tasks)
