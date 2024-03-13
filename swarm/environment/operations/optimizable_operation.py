@@ -62,7 +62,7 @@ My current prompt is:
 
 To generate an improved prompt, consider the following:
 {advice}
-Genergate an improved prompt within five sentences. Do not mention a specific task in the prompt!
+Generate an improved prompt within five sentences. Do not mention a specific task in the prompt!
 The prompt should be wrapped with <START> and <END>.
 """
         new_prompt = await self.llm.agen([Message(role="user", content=meta_prompt)], max_tokens=200)
