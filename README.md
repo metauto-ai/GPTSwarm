@@ -118,7 +118,7 @@ We support local LM inference via [LM Studio](https://lmstudio.ai). Download the
 
 <img src="assets/lm_studio.png" alt="Edge optimization" width="800">
 
-## Initial Contributors
+## Contributors
 
 * [Mingchen Zhuge](http://metauto.ai) (PhD Student, KAUST; Project Initiator)
 * [Wenyi Wang](https://scholar.google.com/citations?user=79ODhuQAAAAJ&hl=en&oi=ao) (PhD Student, KAUST; Initial Participant)
@@ -126,6 +126,7 @@ We support local LM inference via [LM Studio](https://lmstudio.ai). Download the
 * [Louis Kirsch](http://louiskirsch.com) (PhD Student, IDSIA)
 * [Francesco Faccio](https://scholar.google.com/citations?user=0z3DkrkAAAAJ&hl=en&oi=ao) (PostDoc, IDSIA; Visiting Researcher, KAUST)
 * [Jürgen Schmidhuber](http://www.idsia.ch/~juergen/) (Director, KAUST AI Initiative; Scientific Director, IDSIA)
+* [William FH](https://github.com/hinthornw) (Engineering @ LangChain)
 
 Please read our [developer document](DEVELOPMENT.md) if you are interested in contributing.
 
