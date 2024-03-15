@@ -34,7 +34,7 @@ if __name__ == "__main__":
     num_batches = int(len(test_data) / batch_size)
     evaluator = CrosswordsEvaluator(test_data, batch_size=batch_size, metric="words", window_size=num_batches)
     swarm = Swarm(["CrosswordsReflection", "CrosswordsToT"], "crosswords", "gpt-4-1106-preview", #"gpt-3.5-turbo-1106",
-                final_node_class="TakeBest", final_node_kwargs={}, edge_optimize=True,
+                final_node_class="ReturnAll", final_node_kwargs={}, edge_optimize=True,
                 init_connection_probability=init_connection_probability, connect_output_nodes_to_final_node=True)
     swarm.connection_dist.load_state_dict(torch.load(f"result/crosswords_Jan15/{experiment_id}_edge_logits_{int(epochs * len(test_data) / batch_size) - 1}.pkl"))
 
