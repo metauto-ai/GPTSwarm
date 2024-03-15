@@ -120,6 +120,10 @@ We support local LM inference via [LM Studio](https://lmstudio.ai). Download the
 
 ## Contributors
 
+<a href="https://github.com/metauto-ai/gptswarm/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=metauto-ai/gptswarm&max=200" />
+</a>
+
 * [Mingchen Zhuge](http://metauto.ai) (PhD Student@KAUST; Project Initiator)
 * [Wenyi Wang](https://scholar.google.com/citations?user=79ODhuQAAAAJ&hl=en&oi=ao) (PhD Student @ KAUST; Initial Participant)
 * [Dmitrii Khizbullin](http://www.khizbullin.tech) (Research Engineer Lead @ KAUST; Project Engineer Lead)
