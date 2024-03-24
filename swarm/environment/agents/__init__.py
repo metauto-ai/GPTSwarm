@@ -12,6 +12,7 @@ from swarm.environment.agents.gaia.tool_tot import ToolTOT
 from swarm.environment.agents.gaia.normal_io import NormalIO
 from swarm.environment.agents.humaneval.code_io import CodeIO
 # from swarm.environment.agents.humaneval.code_reflection import CodeReflection
+from swarm.environment.agents.mmlu.specialist_agent import SpecialistAgent
 
 __all__ = [
     "IO",
@@ -27,4 +28,5 @@ __all__ = [
     "NormalIO",
     "WebIO",
     "CodeIO",
+    "SpecialistAgent",
 ]
