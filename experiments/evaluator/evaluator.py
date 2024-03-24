@@ -99,7 +99,7 @@ class Evaluator():
                 ],
             edge_probs: Optional[torch.Tensor] = None,
             limit_questions: Optional[int] = None,
-            eval_batch_size: int = 4,
+            eval_batch_size: int = 1, # 4,
             ) -> float:
 
         assert self._swarm is not None

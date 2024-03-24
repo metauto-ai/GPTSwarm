@@ -142,7 +142,7 @@ class FinalDecision(Node):
                         "format": "natural language"}
 
         self.memory.add(self.id, executions)
-        self.log()
+        # self.log()
         return executions
         
         

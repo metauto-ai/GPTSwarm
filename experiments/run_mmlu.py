@@ -16,10 +16,10 @@ def parse_args():
                         choices=['DirectAnswer', 'FullConnectedSwarm', 'RandomSwarm', 'OptimizedSwarm'],
                         help="Mode of operation. Default is 'OptimizedSwarm'.")
 
-    parser.add_argument('--num-truthful-agents', type=int, default=3, # 1
+    parser.add_argument('--num-truthful-agents', type=int, default=5, # 1
                         help="Number of truthful agents. The total will be N truthful and N adversarial.")
 
-    parser.add_argument('--num-iterations', type=int, default=200,
+    parser.add_argument('--num-iterations', type=int, default=5, # 200,
                         help="Number of optimization iterations. Default 200.")
 
     parser.add_argument('--model_name', type=str, default=None,
@@ -59,10 +59,12 @@ async def main():
         swarm = None
     else:
         N = args.num_truthful_agents
-        M = N
-        agent_name_list = N * ["SpecialistAgent"] + M * ["AdversarialAgent"]
+        # M = N
+        # agent_name_list = N * ["SpecialistAgent"]
+        agent_name_list = N * ["IO"]
 
-        swarm_name = f"{N}true_{M}adv"
+        # swarm_name = f"{N}true_{M}adv"
+        swarm_name = f"{N}specialist"
 
         swarm = Swarm(
             agent_name_list,

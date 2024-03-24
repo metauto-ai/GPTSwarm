@@ -74,7 +74,7 @@ class WebSearch(Node):
             self.memory.add(self.id, executions)
             outputs.append(executions)
 
-        self.log()
+        # self.log()
         return outputs
 
     def web_search(self, query):

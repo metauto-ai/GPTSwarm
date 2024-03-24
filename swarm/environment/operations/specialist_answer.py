@@ -50,7 +50,7 @@ class SpecialistAnswer(Node):
     def __init__(self, 
                  domain: str,
                  model_name: Optional[str],
-                 operation_description: str = "Aswer as if you were a specialist in <something>.",
+                 operation_description: str = "Answer as if you were a specialist in <something>.",
                  max_token: int = 50, 
                  id=None):
         super().__init__(operation_description, id, True)
@@ -60,9 +60,14 @@ class SpecialistAnswer(Node):
         self.max_token = max_token
         self.prompt_set = PromptSetRegistry.get(domain)
 
+        # Override role with a specialist role.
+        idx_role = hash(self.id) % len(self.role_list)
+        self.role = self.role_list[idx_role]
+        print(f"Creating a node with specialization {self.role}")
+
     @property
     def node_name(self):
-        return self.__class__.__name__
+        return f"{self.__class__.__name__}_{self.role}"
     
     async def node_optimize(self, input, meta_optmize=False):
         task = input["task"]
@@ -78,7 +83,6 @@ class SpecialistAnswer(Node):
 
         return role, constraint
 
-
     async def _execute(self, inputs: List[Any] = [], **kwargs):
         
         node_inputs = self.process_input(inputs)
@@ -88,12 +92,10 @@ class SpecialistAnswer(Node):
             task = input["task"]
             _, constraint = await self.node_optimize(input, meta_optmize=False)
 
-            # Override role with a specialist role.
-            idx_role = hash(self.id) % len(self.role_list)
-            role = self.role_list[idx_role]
-            print(role)
-
-            system_message = f"You are a {role}. {constraint}. Aswer with one of the 4 letters only: A, B, C or D."
+            system_message = (
+                f"You are a {self.role}. {constraint}. "
+                "Answer with one of the 4 letters: A, B, C or D. "
+                "And then elaborate in a separate sentense.")
 
             prompt = self.prompt_set.get_answer_prompt(question=task)
             message = [Message(role="system", content=system_message),
@@ -105,7 +107,7 @@ class SpecialistAnswer(Node):
                 "task": task,
                 "files": input.get("files", []),
                 "input": task,
-                "role": role,
+                "role": self.role,
                 "constraint": constraint,
                 "prompt": prompt,
                 "output": response,
@@ -116,4 +118,4 @@ class SpecialistAnswer(Node):
             self.memory.add(self.id, execution)
 
         # self.log()
-        return outputs 
+        return outputs
