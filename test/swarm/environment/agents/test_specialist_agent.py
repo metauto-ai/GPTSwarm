@@ -20,10 +20,10 @@ D: baby don't hurt me no more
     for _ in range(10):
         io = SpecialistAgent("mmlu", model_name)
         response = await io.run([{"task": task}])
-        print(response)
-        responses.append(response)
+        print(response[0])
+        responses.append(response[0])
 
-    print(responses[0])
+    print(responses)
 
     print()
 
