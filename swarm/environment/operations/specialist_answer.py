@@ -94,19 +94,25 @@ class SpecialistAnswer(Node):
             if len(input) == 1 and 'task' in input: # Swarm input
                 task = input['task']
             else: # All other incoming edges
-                extra_knowledge = f"Opinion of {input['operation']} is \"{input['output']}\"."
+                extra_knowledge = f"Opinion of {input['operation']} is {input['output']}."
                 additional_knowledge.append(extra_knowledge)
 
         if task is None:
             raise ValueError(f"{self.__class__.__name__} expects swarm input among inputs")
 
-        user_message = "\n\n"
+        opinions = ""
         if len(additional_knowledge) > 0:
             for extra_knowledge in additional_knowledge:
-                user_message = user_message + extra_knowledge + "\n\n"
+                opinions = opinions + extra_knowledge + "\n\n"
 
-        prompt = self.prompt_set.get_answer_prompt(question=task)
-        user_message = user_message + prompt
+        question = self.prompt_set.get_answer_prompt(question=task)
+        user_message = question
+        if len(opinions) > 0:
+            user_message = f"""{user_message}
+
+Take into accound the following opinions which may or may not be true:
+
+{opinions}"""
 
         _, constraint = await self.node_optimize(input, meta_optmize=False)
         system_message = f"You are a {self.role}. {constraint}"
@@ -122,7 +128,7 @@ class SpecialistAnswer(Node):
             "input": task,
             "role": self.role,
             "constraint": constraint,
-            "prompt": prompt,
+            "prompt": user_message,
             "output": response,
             "ground_truth": input.get("GT", []),
             "format": "natural language"
