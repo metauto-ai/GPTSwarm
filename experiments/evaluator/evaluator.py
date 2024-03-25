@@ -99,7 +99,8 @@ class Evaluator():
                 ],
             edge_probs: Optional[torch.Tensor] = None,
             limit_questions: Optional[int] = None,
-            eval_batch_size: int = 1, # 4,
+            eval_batch_size: int = 4,
+            is_async: bool = True,
             ) -> float:
 
         assert self._swarm is not None
@@ -143,7 +144,7 @@ class Evaluator():
 
             start_ts = time.time()
 
-            future_answers = []
+            maybe_future_answers = []
             for record in record_batch:
                 if mode == 'randomly_connected_swarm':
                     realized_graph, _ = self._swarm.connection_dist.realize(self._swarm.composite_graph)
@@ -153,9 +154,16 @@ class Evaluator():
                 print(input_dict)
 
                 future_answer = self._swarm.arun(input_dict, realized_graph)
-                future_answers.append(future_answer)
+                if is_async:
+                    maybe_future_answer = future_answer
+                else:
+                    maybe_future_answer = await future_answer
+                maybe_future_answers.append(maybe_future_answer)
 
-            raw_answers = await asyncio.gather(*future_answers)
+            if is_async:
+                raw_answers = await asyncio.gather(*maybe_future_answers)
+            else:
+                raw_answers = maybe_future_answers
 
             print(f"Batch time {time.time() - start_ts:.3f}")
 
@@ -206,6 +214,7 @@ class Evaluator():
             num_iters: int,
             lr: float,
             batch_size: int = 4,
+            is_async: bool = True,
             ) -> torch.Tensor:
 
         assert self._swarm is not None
@@ -240,7 +249,7 @@ class Evaluator():
 
             start_ts = time.time()
 
-            future_answers = []
+            maybe_future_answers = []
             log_probs = []
             correct_answers = []
             for i_record, record in zip(range(batch_size), loader):
@@ -251,13 +260,20 @@ class Evaluator():
                     )
 
                 input_dict = dataset.record_to_swarm_input(record)
-                answer = self._swarm.arun(input_dict, realized_graph)
-                future_answers.append(answer)
+                future_answer = self._swarm.arun(input_dict, realized_graph)
+                if is_async:
+                    maybe_future_answer = future_answer
+                else:
+                    maybe_future_answer = await future_answer
+                maybe_future_answers.append(maybe_future_answer)
                 log_probs.append(log_prob)
                 correct_answer = dataset.record_to_target_answer(record)
                 correct_answers.append(correct_answer)
 
-            raw_answers = await asyncio.gather(*future_answers)
+            if is_async:
+                raw_answers = await asyncio.gather(*maybe_future_answers)
+            else:
+                raw_answers = maybe_future_answers
 
             print(f"Batch time {time.time() - start_ts:.3f}")
 
