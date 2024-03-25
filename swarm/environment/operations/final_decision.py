@@ -87,6 +87,10 @@ class FinalDecision(Node):
             if len(inputs) == 0:
                 raise Exception("No inputs is not supported for MajorityVote")
             answers = [input.get("output") for input in inputs]
+
+            # Quick hack
+            answers = [s[0].upper() for s in answers]
+
             counter = Counter(answers)
             sorted_counter = counter.most_common()
             max_freq = sorted_counter[0][1]
