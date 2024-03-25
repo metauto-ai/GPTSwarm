@@ -67,7 +67,7 @@ class SpecialistAnswer(Node):
 
     @property
     def node_name(self):
-        return f"{self.__class__.__name__}_{self.role}"
+        return f"{self.__class__.__name__} {self.role}"
     
     async def node_optimize(self, input, meta_optmize=False):
         task = input["task"]
@@ -88,34 +88,47 @@ class SpecialistAnswer(Node):
         node_inputs = self.process_input(inputs)
         outputs = []
 
+        task: Optional[str] = None
+        additional_knowledge: List[str] = []
         for input in node_inputs:
-            task = input["task"]
-            _, constraint = await self.node_optimize(input, meta_optmize=False)
+            if len(input) == 1 and 'task' in input: # Swarm input
+                task = input['task']
+            else: # All other incoming edges
+                extra_knowledge = f"Opinion of {input['operation']} is \"{input['output']}\"."
+                additional_knowledge.append(extra_knowledge)
 
-            system_message = (
-                f"You are a {self.role}. {constraint}. "
-                "Answer with one of the 4 letters: A, B, C or D. "
-                "And then elaborate in a separate sentense.")
+        if task is None:
+            raise ValueError(f"{self.__class__.__name__} expects swarm input among inputs")
 
-            prompt = self.prompt_set.get_answer_prompt(question=task)
-            message = [Message(role="system", content=system_message),
-                       Message(role="user", content=prompt)]
-            response = await self.llm.agen(message, max_tokens=self.max_token)
+        user_message = "\n\n"
+        if len(additional_knowledge) > 0:
+            for extra_knowledge in additional_knowledge:
+                user_message = user_message + extra_knowledge + "\n\n"
 
-            execution = {
-                "operation": self.node_name,
-                "task": task,
-                "files": input.get("files", []),
-                "input": task,
-                "role": self.role,
-                "constraint": constraint,
-                "prompt": prompt,
-                "output": response,
-                "ground_truth": input.get("GT", []),
-                "format": "natural language"
-            }
-            outputs.append(execution)
-            self.memory.add(self.id, execution)
+        prompt = self.prompt_set.get_answer_prompt(question=task)
+        user_message = user_message + prompt
+
+        _, constraint = await self.node_optimize(input, meta_optmize=False)
+        system_message = f"You are a {self.role}. {constraint}"
+
+        message = [Message(role="system", content=system_message),
+                    Message(role="user", content=user_message)]
+        response = await self.llm.agen(message, max_tokens=self.max_token)
+
+        execution = {
+            "operation": self.node_name,
+            "task": task,
+            "files": input.get("files", []),
+            "input": task,
+            "role": self.role,
+            "constraint": constraint,
+            "prompt": prompt,
+            "output": response,
+            "ground_truth": input.get("GT", []),
+            "format": "natural language"
+        }
+        outputs.append(execution)
+        self.memory.add(self.id, execution)
 
         # self.log()
         return outputs

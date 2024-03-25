@@ -19,7 +19,7 @@ def parse_args():
     parser.add_argument('--num-truthful-agents', type=int, default=5, # 1
                         help="Number of truthful agents. The total will be N truthful and N adversarial.")
 
-    parser.add_argument('--num-iterations', type=int, default=5, # 200,
+    parser.add_argument('--num-iterations', type=int, default=50, # 200
                         help="Number of optimization iterations. Default 200.")
 
     parser.add_argument('--model_name', type=str, default=None,
@@ -60,10 +60,11 @@ async def main():
     else:
         N = args.num_truthful_agents
         # M = N
-        # agent_name_list = N * ["SpecialistAgent"]
-        agent_name_list = N * ["IO"]
+        # agent_name_list = N * ["IO"]
+        agent_name_list = N * ["SpecialistAgent"]
 
         # swarm_name = f"{N}true_{M}adv"
+        # swarm_name = f"{N}io"
         swarm_name = f"{N}specialist"
 
         swarm = Swarm(

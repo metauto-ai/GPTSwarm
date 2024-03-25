@@ -12,19 +12,21 @@ async def test_io(model_name):
     task = """
 What is love?
 A: a feeling
-B: a utopia
+B: all you need
 C: a chemical process
 D: baby don't hurt me no more
 """
     responses = []
     for _ in range(10):
         io = SpecialistAgent("mmlu", model_name)
-        response = await io.run([{"task": task}])
+        response = await io.run({"task": task})
         print(response[0])
         responses.append(response[0])
 
     print(responses)
+    print()
 
+    print([r[0] for r in responses])
     print()
 
 
