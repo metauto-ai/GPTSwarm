@@ -107,7 +107,7 @@ OPENAI_MODEL_INFO ={
         "current_recommended": "gpt-3.5-turbo-1106",
         "gpt-3.5-turbo-0125": {
             "context window": 16385, 
-            "training": "Sep 2021", 
+            "training": "Jan 2024", 
             "input": 0.0010, 
             "output": 0.0020
         },
