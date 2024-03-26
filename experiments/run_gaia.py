@@ -19,9 +19,9 @@ from swarm.environment.agents.gaia.web_io import WebIO
 from swarm.environment.agents.gaia.tool_tot import ToolTOT
 from swarm.environment.operations import DirectAnswer
 from swarm.memory.memory import GlobalMemory
-from swarm.utils.globals import Time
+from swarm.utils.globals import Time, Cost, CompletionTokens, PromptTokens
 from swarm.utils.const import GPTSWARM_ROOT
-from swarm.utils.log import logger
+from swarm.utils.log import initialize_log_file, logger, swarmlog
 from swarm.environment.domain.gaia import question_scorer
 from swarm.environment.operations.final_decision import MergingStrategy
 
@@ -47,6 +47,12 @@ async def main():
 
     result_path = GPTSWARM_ROOT / "result"
     os.makedirs(result_path, exist_ok=True)
+
+    current_time = Time.instance().value or time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime())
+    Time.instance().value = current_time
+
+
+    initialize_log_file("GAIA", Time.instance().value)
 
     if args.config:
         config_args = YAMLReader.parse(args.config, return_str=False)
@@ -97,6 +103,8 @@ async def main():
         ground_truth = item["Final answer"]
         inputs = {"task": task, "files": files, "GT": ground_truth}
 
+        swarmlog("🐝GPTSWARM SYS", f"Finish {i} samples...", Cost.instance().value, PromptTokens.instance().value, CompletionTokens.instance().value)
+
         # Swarm
         # answer = await swarm.composite_graph.run(inputs)
         # answer = answer[-1].split("FINAL ANSWER: ")[-1]
@@ -104,7 +112,7 @@ async def main():
         # end_time = time.time()
         # exe_time =  end_time - start_time
 
-        # print("-----")
+        # print("-----")ß
         # print(f"SWARM ANSWER: {answer}")
         # print("-----")
 
@@ -129,8 +137,8 @@ async def main():
         print("-----")
         """
 
-        current_time = Time.instance().value or time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime())
-        Time.instance().value = current_time
+        # current_time = Time.instance().value or time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime())
+        # Time.instance().value = current_time
         
         result_dir = Path(f"{GPTSWARM_ROOT}/result/eval")
         result_file = result_file or (result_dir / f"{'_'.join(experiment_name.split())}_{args.llm}_{current_time}.json")
@@ -156,6 +164,7 @@ async def main():
             "Total executed": total_executed + 1,
             "Accuracy": (total_solved + is_solved) / (total_executed + 1),
             "Time": exe_time,
+            "Total Cost": Cost.instance().value,
         }
         data.append(updated_item)
 

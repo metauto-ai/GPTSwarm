@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import sys
 from typing import Optional
 
 class Singleton:
@@ -13,6 +14,14 @@ class Singleton:
         return cls._instance
 
 class Cost(Singleton):
+    def __init__(self):
+        self.value = 0.0
+
+class PromptTokens(Singleton):
+    def __init__(self):
+        self.value = 0.0
+
+class CompletionTokens(Singleton):
     def __init__(self):
         self.value = 0.0
 

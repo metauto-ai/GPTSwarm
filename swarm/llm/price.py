@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from swarm.utils.log import swarmlog
-from swarm.utils.globals import Cost
+from swarm.utils.globals import Cost, PromptTokens, CompletionTokens
 
 # GPT-4:  https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo
 # GPT3.5: https://platform.openai.com/docs/models/gpt-3-5
@@ -45,6 +45,8 @@ def cost_count(response, model_name):
         completion_len = response.usage.completion_tokens
 
     Cost.instance().value += price
+    PromptTokens.instance().value += prompt_len
+    CompletionTokens.instance().value += completion_len
 
     # print(f"Prompt Tokens: {prompt_len}, Completion Tokens: {completion_len}")
     return price, prompt_len, completion_len
@@ -52,6 +54,12 @@ def cost_count(response, model_name):
 OPENAI_MODEL_INFO ={
     "gpt-4": {
         "current_recommended": "gpt-4-1106-preview",
+        "gpt-4-0125-preview": {
+            "context window": 128000, 
+            "training": "Jan 2024", 
+            "input": 0.01, 
+            "output": 0.03
+        },      
         "gpt-4-1106-preview": {
             "context window": 128000, 
             "training": "Apr 2023", 
@@ -97,6 +105,12 @@ OPENAI_MODEL_INFO ={
     },
     "gpt-3.5": {
         "current_recommended": "gpt-3.5-turbo-1106",
+        "gpt-3.5-turbo-0125": {
+            "context window": 16385, 
+            "training": "Sep 2021", 
+            "input": 0.0010, 
+            "output": 0.0020
+        },
         "gpt-3.5-turbo-1106": {
             "context window": 16385, 
             "training": "Sep 2021", 

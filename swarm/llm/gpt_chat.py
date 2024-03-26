@@ -33,6 +33,7 @@ def gpt_chat(
     max_tokens: int = 8192,
     temperature: float = 0.0,
     num_comps=1,
+    return_cost=False,
 ) -> Union[List[str], str]:
     if messages[0].content == '$skip$':
         return ''
@@ -60,6 +61,7 @@ def gpt_chat(
         return response.choices[0].message.content
 
     cost_count(response, model)
+
     return [choice.message.content for choice in response.choices]
 
 
@@ -70,6 +72,7 @@ async def gpt_achat(
     max_tokens: int = 8192,
     temperature: float = 0.0,
     num_comps=1,
+    return_cost=False,
 ) -> Union[List[str], str]:
     if messages[0].content == '$skip$':
         return '' 
@@ -101,6 +104,7 @@ async def gpt_achat(
         return response.choices[0].message.content
     
     cost_count(response, model)
+
     return [choice.message.content for choice in response.choices]
 
 
