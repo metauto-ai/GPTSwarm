@@ -62,7 +62,7 @@ def swarmlog(sender: str, text: str, cost: float,  prompt_tokens: int, complete_
 
     try:
         os.makedirs(log_file_path.parent, exist_ok=True)
-        with open(log_file_path, 'w') as file:
+        with open(log_file_path, 'a') as file:
             file.write(f"{formatted_message}\n")
     except OSError as error:
         logger.error(f"Error initializing log file: {error}")
