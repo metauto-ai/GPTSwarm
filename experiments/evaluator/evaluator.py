@@ -62,7 +62,9 @@ class Evaluator():
 
         accuracy = Accuracy()
 
-        for i_question, record in tqdm(enumerate(dataset)):
+        data_len = min(len(dataset), limit_questions) if limit_questions is not None else len(dataset)
+
+        for i_question, record in tqdm(enumerate(dataset), total=data_len):
             print(80*'-')
             if limit_questions is not None:
                 if i_question >= limit_questions:

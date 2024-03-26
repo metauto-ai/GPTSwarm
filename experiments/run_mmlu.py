@@ -22,7 +22,7 @@ def parse_args():
     parser.add_argument('--num-iterations', type=int, default=50, # 200
                         help="Number of optimization iterations. Default 200.")
 
-    parser.add_argument('--model_name', type=str, default=None,
+    parser.add_argument('--model_name', type=str, default='gpt-3.5-turbo-1106', # None, 'gpt-35-turbo-0301'
                         help="Model name, None runs the default ChatGPT4.")
 
     parser.add_argument('--domain', type=str, default="mmlu",
@@ -81,7 +81,10 @@ async def main():
     download()
 
     dataset_train = MMLUDataset('dev')
-    dataset_val = MMLUDataset('val')
+    # dataset_val = MMLUDataset('val')
+    dataset_val = MMLUDataset('test')
+
+    print(len(dataset_val))
 
     evaluator = Evaluator(
         swarm,
@@ -92,7 +95,7 @@ async def main():
         enable_artifacts=True,
         tensorboard_tag=tag)
 
-    limit_questions = 5 if debug else 153
+    limit_questions = 5 if debug else 2808   # 14042*20%=2808   # 153 is 10% of val
 
     if mode == 'DirectAnswer':
         score = await evaluator.evaluate_direct_answer(
