@@ -52,7 +52,7 @@ async def main():
     Time.instance().value = current_time
 
 
-    initialize_log_file("GAIA", Time.instance().value)
+    log_file_path = initialize_log_file("GAIA", Time.instance().value)
 
     if args.config:
         config_args = YAMLReader.parse(args.config, return_str=False)
@@ -103,7 +103,7 @@ async def main():
         ground_truth = item["Final answer"]
         inputs = {"task": task, "files": files, "GT": ground_truth}
 
-        swarmlog("🐝GPTSWARM SYS", f"Finish {i} samples...", Cost.instance().value, PromptTokens.instance().value, CompletionTokens.instance().value)
+        swarmlog("🐝GPTSWARM SYS", f"Finish {i} samples...", Cost.instance().value, PromptTokens.instance().value, CompletionTokens.instance().value, log_file_path)
 
         # Swarm
         # answer = await swarm.composite_graph.run(inputs)

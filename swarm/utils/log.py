@@ -41,7 +41,7 @@ def initialize_log_file(experiment_name: str, time_stamp: str) -> Path:
         raise
     return log_file_path
 
-def swarmlog(sender: str, text: str, cost: float,  prompt_tokens: int, complete_tokens: int) -> None:
+def swarmlog(sender: str, text: str, cost: float,  prompt_tokens: int, complete_tokens: int, log_file_path: str) -> None:
     """
     Custom log function for swarm operations. Includes dynamic global variables.
 
@@ -56,9 +56,18 @@ def swarmlog(sender: str, text: str, cost: float,  prompt_tokens: int, complete_
     formatted_message = (
         f"{sender} | 💵Total Cost: ${cost:.5f} | "
         f"CompletionTokens: {complete_tokens} | "
-        f"PromptTokens: {prompt_tokens} | "
+        f"PromptTokens: {prompt_tokens} | \n {text}"
     )
     logger.info(formatted_message)
+
+    try:
+        os.makedirs(log_file_path.parent, exist_ok=True)
+        with open(log_file_path, 'w') as file:
+            file.write(f"{formatted_message}\n")
+    except OSError as error:
+        logger.error(f"Error initializing log file: {error}")
+        raise
+
 
 def main():
     configure_logging()
