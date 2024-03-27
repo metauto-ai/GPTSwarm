@@ -16,13 +16,13 @@ def parse_args():
                         choices=['DirectAnswer', 'FullConnectedSwarm', 'RandomSwarm', 'OptimizedSwarm'],
                         help="Mode of operation. Default is 'OptimizedSwarm'.")
 
-    parser.add_argument('--num-truthful-agents', type=int, default=1,
+    parser.add_argument('--num-truthful-agents', type=int, default=7,
                         help="Number of truthful agents. The total will be N truthful and N adversarial.")
 
-    parser.add_argument('--num-iterations', type=int, default=200,
+    parser.add_argument('--num-iterations', type=int, default=50, # 200
                         help="Number of optimization iterations. Default 200.")
 
-    parser.add_argument('--model_name', type=str, default=None,
+    parser.add_argument('--model_name', type=str, default=None, # None, 'gpt-35-turbo-0301' 'gpt-3.5-turbo-1106'
                         help="Model name, None runs the default ChatGPT4.")
 
     parser.add_argument('--domain', type=str, default="mmlu",
@@ -59,10 +59,13 @@ async def main():
         swarm = None
     else:
         N = args.num_truthful_agents
-        M = N
-        agent_name_list = N * ["IO"] + M * ["AdversarialAgent"]
+        # M = N
+        # agent_name_list = N * ["IO"]
+        agent_name_list = N * ["SpecialistAgent"]
 
-        swarm_name = f"{N}true_{M}adv"
+        # swarm_name = f"{N}true_{M}adv"
+        # swarm_name = f"{N}io"
+        swarm_name = f"{N}specialist"
 
         swarm = Swarm(
             agent_name_list,
@@ -79,6 +82,7 @@ async def main():
 
     dataset_train = MMLUDataset('dev')
     dataset_val = MMLUDataset('val')
+    # dataset_val = MMLUDataset('test')
 
     evaluator = Evaluator(
         swarm,
@@ -89,7 +93,7 @@ async def main():
         enable_artifacts=True,
         tensorboard_tag=tag)
 
-    limit_questions = 5 if debug else 153
+    limit_questions = 5 if debug else 153   # 14042*20%=2808   # 153 is 10% of val
 
     if mode == 'DirectAnswer':
         score = await evaluator.evaluate_direct_answer(
@@ -104,7 +108,7 @@ async def main():
             limit_questions=limit_questions)
     elif mode == 'OptimizedSwarm':
 
-        num_iters = 5 if debug else args.num_iterations
+        num_iters = 2 if debug else args.num_iterations
 
         lr = 0.1
 
