@@ -215,7 +215,7 @@ class Evaluator():
             self,
             num_iters: int,
             lr: float,
-            batch_size: int = 4,
+            batch_size: int = 32, # 4,
             is_async: bool = True,
             ) -> torch.Tensor:
 
@@ -289,7 +289,8 @@ class Evaluator():
                 accuracy.update(answer, correct_answer)
                 utility = accuracy.get()
                 utilities.append(utility)
-                single_loss = - log_prob * utility
+                offset_utility = utility - 0.59 # ATTENTION HARDCODE
+                single_loss = - log_prob * offset_utility
                 loss_list.append(single_loss)
 
             print("utilities:", utilities)
