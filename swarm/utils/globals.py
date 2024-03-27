@@ -12,6 +12,9 @@ class Singleton:
         if cls._instance is None:
             cls._instance = cls()
         return cls._instance
+    
+    def reset(self):
+        self.value = 0.0
 
 class Cost(Singleton):
     def __init__(self):
