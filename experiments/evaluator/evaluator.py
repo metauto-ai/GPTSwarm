@@ -52,9 +52,13 @@ class Evaluator():
         else:
             self._logger = None
 
+        self._optimization_cost: Optional[Dict[str, float]] = None
+
     async def evaluate_direct_answer(self,
             limit_questions: Optional[int] = None,
             ) -> float:
+
+        self._reset_cost()
 
         dataset = self._val_dataset
 
@@ -89,7 +93,9 @@ class Evaluator():
 
         self._dump_eval_results(dict(
             accuracy=accuracy.get(),
-            limit_questions=limit_questions))
+            limit_questions=limit_questions,
+            eval_cost=self._get_cost(),
+            ))
 
         print("Done!")
         return accuracy.get()
@@ -108,6 +114,8 @@ class Evaluator():
             ) -> float:
 
         assert self._swarm is not None
+
+        self._reset_cost()
 
         dataset = self._val_dataset
 
@@ -182,16 +190,15 @@ class Evaluator():
 
         accuracy.print()
         print("Done!")
-        
-        self._dump_eval_results(dict(
+
+        result_dict = dict(
             accuracy=accuracy.get(),
             limit_questions=limit_questions,
-            total_cost=dict(
-                Cost=Cost.instance().value,
-                PromptTokens=PromptTokens.instance().value,
-                CompletionTokens=CompletionTokens.instance().value,
-                ),
-            ))
+            eval_cost=self._get_cost(),
+            )
+        if self._optimization_cost is not None:
+            result_dict['train_cost'] = self._optimization_cost
+        self._dump_eval_results(result_dict)
 
         return accuracy.get()
 
@@ -219,6 +226,20 @@ class Evaluator():
                 with open(txt_name, "w") as f:
                     f.writelines(msgs)
 
+    @staticmethod
+    def _reset_cost():
+        Cost.instance().reset()
+        PromptTokens.instance().reset()
+        CompletionTokens.instance().reset()
+
+    @staticmethod
+    def _get_cost() -> Dict[str, float]:
+        return dict(
+            Cost=Cost.instance().value,
+            PromptTokens=PromptTokens.instance().value,
+            CompletionTokens=CompletionTokens.instance().value,
+            )
+
     async def optimize_swarm(
             self,
             num_iters: int,
@@ -228,6 +249,8 @@ class Evaluator():
             ) -> torch.Tensor:
 
         assert self._swarm is not None
+
+        self._reset_cost()
 
         dataset = self._train_dataset
 
@@ -328,6 +351,8 @@ class Evaluator():
 
         if edge_probs is not None:
             self._print_conns(edge_probs, save_to_file=True)
+
+        self._optimization_cost = self._get_cost()
 
         print("Done!")
         edge_probs = torch.sigmoid(self._swarm.connection_dist.edge_logits)
