@@ -17,6 +17,8 @@ from swarm.graph.swarm import Swarm
 from experiments.evaluator.datasets.base_dataset import BaseDataset
 from experiments.evaluator.accuracy import Accuracy
 
+from swarm.utils.globals import Time, Cost, CompletionTokens, PromptTokens
+
 
 class Evaluator():
     def __init__(
@@ -183,7 +185,13 @@ class Evaluator():
         
         self._dump_eval_results(dict(
             accuracy=accuracy.get(),
-            limit_questions=limit_questions))
+            limit_questions=limit_questions,
+            total_cost=dict(
+                Cost=Cost.instance().value,
+                PromptTokens=PromptTokens.instance().value,
+                CompletionTokens=CompletionTokens.instance().value,
+                ),
+            ))
 
         return accuracy.get()
 

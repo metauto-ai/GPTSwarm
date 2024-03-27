@@ -108,7 +108,7 @@ async def main():
             limit_questions=limit_questions)
     elif mode == 'OptimizedSwarm':
 
-        num_iters = 5 if debug else args.num_iterations
+        num_iters = 2 if debug else args.num_iterations
 
         lr = 0.1
 
