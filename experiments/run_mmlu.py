@@ -59,13 +59,15 @@ async def main():
         swarm = None
     else:
         N = args.num_truthful_agents
-        # M = N
+        M = N
         # agent_name_list = N * ["IO"]
-        agent_name_list = N * ["SpecialistAgent"]
+        # agent_name_list = N * ["SpecialistAgent"]
+        agent_name_list = N * ["SpecialistAgent"] + M * ["AdversarialAgent"]
 
         # swarm_name = f"{N}true_{M}adv"
         # swarm_name = f"{N}io"
-        swarm_name = f"{N}specialist"
+        # swarm_name = f"{N}specialist"
+        swarm_name = f"{N}S{M}A"
 
         swarm = Swarm(
             agent_name_list,
