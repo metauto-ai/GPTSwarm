@@ -31,6 +31,9 @@ def parse_args():
     parser.add_argument('--debug', action='store_true', default=False,
                         help="Set for a quick debug cycle")
 
+    parser.add_argument('--lr', type=float, default=0.1,
+                        help="Learning rate")
+
     args = parser.parse_args()
     return args
 
@@ -60,14 +63,15 @@ async def main():
     else:
         N = args.num_truthful_agents
         M = N
+        # agent_name_list = N * ["IO"] + M * ["AdversarialAgent"]
         # agent_name_list = N * ["IO"]
-        # agent_name_list = N * ["SpecialistAgent"]
-        agent_name_list = N * ["SpecialistAgent"] + M * ["AdversarialAgent"]
+        agent_name_list = N * ["SpecialistAgent"]
+        # agent_name_list = N * ["SpecialistAgent"] + M * ["AdversarialAgent"]
 
         # swarm_name = f"{N}true_{M}adv"
         # swarm_name = f"{N}io"
-        # swarm_name = f"{N}specialist"
-        swarm_name = f"{N}S{M}A"
+        swarm_name = f"{N}specialist"
+        # swarm_name = f"{N}S{M}A"
 
         swarm = Swarm(
             agent_name_list,
@@ -112,9 +116,7 @@ async def main():
 
         num_iters = 2 if debug else args.num_iterations
 
-        lr = 0.1
-
-        edge_probs = await evaluator.optimize_swarm(num_iters=num_iters, lr=lr)
+        edge_probs = await evaluator.optimize_swarm(num_iters=num_iters, lr=args.lr)
 
         score = await evaluator.evaluate_swarm(
             mode='external_edge_probs',
