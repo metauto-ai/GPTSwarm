@@ -17,11 +17,11 @@
 
 ## News
 
-🎯 May 1, 2024: GPTSwarm has been accepted by [ICML2024](https://icml.cc).
+* 🔥 [05/01] GPTSwarm has been accepted by [ICML2024](https://icml.cc).
 
-✨ March 3, 2024: GPTSwarm can be installed via pip now: ``pip install gptswarm``
+* 🔥 [03/01] GPTSwarm can be installed via pip now: ``pip install gptswarm``
 
-🚀 Feb 27, 2024: Our academic paper: [Language Agents as Optimizable Graphs](https://arxiv.org/abs/2402.16823) is released.
+* 🔥 [02/27] Our academic paper: [Language Agents as Optimizable Graphs](https://arxiv.org/abs/2402.16823) is released.
 
 ## Edge optimization example
 
