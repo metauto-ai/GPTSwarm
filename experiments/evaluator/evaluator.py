@@ -17,6 +17,8 @@ from swarm.graph.swarm import Swarm
 from experiments.evaluator.datasets.base_dataset import BaseDataset
 from experiments.evaluator.accuracy import Accuracy
 
+from swarm.utils.globals import Time, Cost, CompletionTokens, PromptTokens
+
 
 class Evaluator():
     def __init__(
@@ -50,9 +52,13 @@ class Evaluator():
         else:
             self._logger = None
 
+        self._optimization_cost: Optional[Dict[str, float]] = None
+
     async def evaluate_direct_answer(self,
             limit_questions: Optional[int] = None,
             ) -> float:
+
+        self._reset_cost()
 
         dataset = self._val_dataset
 
@@ -62,7 +68,9 @@ class Evaluator():
 
         accuracy = Accuracy()
 
-        for i_question, record in tqdm(enumerate(dataset)):
+        data_len = min(len(dataset), limit_questions) if limit_questions is not None else len(dataset)
+
+        for i_question, record in tqdm(enumerate(dataset), total=data_len):
             print(80*'-')
             if limit_questions is not None:
                 if i_question >= limit_questions:
@@ -85,7 +93,9 @@ class Evaluator():
 
         self._dump_eval_results(dict(
             accuracy=accuracy.get(),
-            limit_questions=limit_questions))
+            limit_questions=limit_questions,
+            eval_cost=self._get_cost(),
+            ))
 
         print("Done!")
         return accuracy.get()
@@ -100,9 +110,12 @@ class Evaluator():
             edge_probs: Optional[torch.Tensor] = None,
             limit_questions: Optional[int] = None,
             eval_batch_size: int = 4,
+            is_async: bool = True,
             ) -> float:
 
         assert self._swarm is not None
+
+        self._reset_cost()
 
         dataset = self._val_dataset
 
@@ -143,7 +156,7 @@ class Evaluator():
 
             start_ts = time.time()
 
-            future_answers = []
+            maybe_future_answers = []
             for record in record_batch:
                 if mode == 'randomly_connected_swarm':
                     realized_graph, _ = self._swarm.connection_dist.realize(self._swarm.composite_graph)
@@ -153,9 +166,16 @@ class Evaluator():
                 print(input_dict)
 
                 future_answer = self._swarm.arun(input_dict, realized_graph)
-                future_answers.append(future_answer)
+                if is_async:
+                    maybe_future_answer = future_answer
+                else:
+                    maybe_future_answer = await future_answer
+                maybe_future_answers.append(maybe_future_answer)
 
-            raw_answers = await asyncio.gather(*future_answers)
+            if is_async:
+                raw_answers = await asyncio.gather(*maybe_future_answers)
+            else:
+                raw_answers = maybe_future_answers
 
             print(f"Batch time {time.time() - start_ts:.3f}")
 
@@ -170,10 +190,15 @@ class Evaluator():
 
         accuracy.print()
         print("Done!")
-        
-        self._dump_eval_results(dict(
+
+        result_dict = dict(
             accuracy=accuracy.get(),
-            limit_questions=limit_questions))
+            limit_questions=limit_questions,
+            eval_cost=self._get_cost(),
+            )
+        if self._optimization_cost is not None:
+            result_dict['train_cost'] = self._optimization_cost
+        self._dump_eval_results(result_dict)
 
         return accuracy.get()
 
@@ -201,14 +226,31 @@ class Evaluator():
                 with open(txt_name, "w") as f:
                     f.writelines(msgs)
 
+    @staticmethod
+    def _reset_cost():
+        Cost.instance().reset()
+        PromptTokens.instance().reset()
+        CompletionTokens.instance().reset()
+
+    @staticmethod
+    def _get_cost() -> Dict[str, float]:
+        return dict(
+            Cost=Cost.instance().value,
+            PromptTokens=PromptTokens.instance().value,
+            CompletionTokens=CompletionTokens.instance().value,
+            )
+
     async def optimize_swarm(
             self,
             num_iters: int,
             lr: float,
-            batch_size: int = 4,
+            batch_size: int = 4, # 32
+            is_async: bool = True,
             ) -> torch.Tensor:
 
         assert self._swarm is not None
+
+        self._reset_cost()
 
         dataset = self._train_dataset
 
@@ -240,7 +282,7 @@ class Evaluator():
 
             start_ts = time.time()
 
-            future_answers = []
+            maybe_future_answers = []
             log_probs = []
             correct_answers = []
             for i_record, record in zip(range(batch_size), loader):
@@ -251,13 +293,20 @@ class Evaluator():
                     )
 
                 input_dict = dataset.record_to_swarm_input(record)
-                answer = self._swarm.arun(input_dict, realized_graph)
-                future_answers.append(answer)
+                future_answer = self._swarm.arun(input_dict, realized_graph)
+                if is_async:
+                    maybe_future_answer = future_answer
+                else:
+                    maybe_future_answer = await future_answer
+                maybe_future_answers.append(maybe_future_answer)
                 log_probs.append(log_prob)
                 correct_answer = dataset.record_to_target_answer(record)
                 correct_answers.append(correct_answer)
 
-            raw_answers = await asyncio.gather(*future_answers)
+            if is_async:
+                raw_answers = await asyncio.gather(*maybe_future_answers)
+            else:
+                raw_answers = maybe_future_answers
 
             print(f"Batch time {time.time() - start_ts:.3f}")
 
@@ -302,6 +351,8 @@ class Evaluator():
 
         if edge_probs is not None:
             self._print_conns(edge_probs, save_to_file=True)
+
+        self._optimization_cost = self._get_cost()
 
         print("Done!")
         edge_probs = torch.sigmoid(self._swarm.connection_dist.edge_logits)

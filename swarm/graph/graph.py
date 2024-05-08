@@ -52,7 +52,7 @@ class Graph(ABC):
         self.domain = domain
         self.model_name = model_name
         self.meta_prompt = meta_prompt
-        self.nodes = {}
+        self.nodes: Dict[str, Node] = {}
         self.memory = GlobalMemory.instance()
         self.is_aggregate = False
         self.input_nodes: List[Node] = []
@@ -167,7 +167,7 @@ class Graph(ABC):
             final_answers.append("No answer since there are no inputs provided")
         return final_answers
 
-    def find_node(self, id: str):
+    def find_node(self, id: str) -> Node:
         for node in self.nodes.values():
             if node.id == id:
                 return node
