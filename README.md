@@ -23,7 +23,13 @@
 
 * 🔥 **[05/01]** GPTSwarm has been accepted by [ICML2024](https://icml.cc).
 
-* 🔥 **[04/17]** [MITTR China Exclusive Interview](https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ) with Mingchen.
+* 🔥 **[03/13]** [MITTR China Exclusive Interview](https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ) with Mingchen.
+
+* 🔥 **[04/18]** Mingchen gave invited talk to ByteDance.
+
+* 🔥 **[03/20]** Mingchen gave invited talk to HUAWEI.
+
+* 🔥 **[03/13]** [MITTR China Exclusive Interview](https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ) with Mingchen.
 
 * 🔥 **[03/01]** GPTSwarm can be installed via pip now: ``pip install gptswarm``
 
