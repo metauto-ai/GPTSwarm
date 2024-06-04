@@ -19,15 +19,15 @@
 
 * 🔥 **[06/03]** [SDAIA](https://sdaia.gov.sa/en) invited GPTSwarm team (Wenyi, Francesco, Dmitrii) for a 5 hour seminar.
 
-* 🔥 **[06/02]** GPTSwarm has selected as **Oral Presentation** by [ICML2024](https://icml.cc)!!
+* 🔥 **[06/02]** GPTSwarm has selected as **Oral Presentation** by [ICML2024](https://icml.cc)! Congratulation!
 
 * 🔥 **[05/01]** GPTSwarm has been accepted by [ICML2024](https://icml.cc).
 
 * 🔥 **[03/13]** [MITTR China Exclusive Interview](https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ) with Mingchen.
 
-* 🔥 **[04/18]** Mingchen gave invited talk to ByteDance.
+* 🔥 **[04/18]** Mingchen gave the invited talk to ByteDance.
 
-* 🔥 **[03/20]** Mingchen gave invited talk to HUAWEI.
+* 🔥 **[03/20]** Mingchen gave the invited talk to HUAWEI.
 
 * 🔥 **[03/13]** [MITTR China Exclusive Interview](https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ) with Mingchen.
 
