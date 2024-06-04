@@ -23,8 +23,6 @@
 
 * 🔥 **[05/01]** GPTSwarm has been accepted by [ICML2024](https://icml.cc).
 
-* 🔥 **[03/13]** [MITTR China Exclusive Interview](https://mp.weixin.qq.com/s/Nsn3rk07mXC_3JaRk4qrTQ) with Mingchen.
-
 * 🔥 **[04/18]** Mingchen gave the invited talk to ByteDance.
 
 * 🔥 **[03/20]** Mingchen gave the invited talk to HUAWEI.
