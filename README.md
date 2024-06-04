@@ -17,7 +17,9 @@
 
 ## News
 
-* 🔥 **[06/03]** GPTSwarm has selected as **Oral Presentation** by [ICML2024](https://icml.cc)!!
+* 🔥 **[06/03]** [SDAIA](https://sdaia.gov.sa/en) invited GPTSwarm team for a 5 hour seminar.
+
+* 🔥 **[06/02]** GPTSwarm has selected as **Oral Presentation** by [ICML2024](https://icml.cc)!!
 
 * 🔥 **[05/01]** GPTSwarm has been accepted by [ICML2024](https://icml.cc).
 
