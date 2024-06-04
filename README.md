@@ -17,6 +17,8 @@
 
 ## News
 
+* 🔥 **[06/03]** GPTSwarm has selected as **Oral Presentation** by [ICML2024](https://icml.cc)!!
+
 * 🔥 **[05/01]** GPTSwarm has been accepted by [ICML2024](https://icml.cc).
 
 * 🔥 **[03/01]** GPTSwarm can be installed via pip now: ``pip install gptswarm``
