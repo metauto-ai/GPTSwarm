@@ -19,7 +19,7 @@
 
 * 🔥 **[06/03]** [SDAIA](https://sdaia.gov.sa/en) invited GPTSwarm team (Wenyi, Francesco, Dmitrii) for a 5 hour seminar.
 
-* 🔥 **[06/02]** GPTSwarm has selected as **Oral Presentation** by [ICML2024](https://icml.cc)! Congratulation!
+* 🔥 **[06/02]** GPTSwarm has been selected as **Oral Presentation** (top 1.5%, 144 in 9,473) by [ICML2024](https://icml.cc)! Congratulation!
 
 * 🔥 **[05/01]** GPTSwarm has been accepted by [ICML2024](https://icml.cc).
 
