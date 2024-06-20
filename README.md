@@ -17,6 +17,8 @@
 
 ## News
 
+* 🔥 **[07/20]** Dmitrii gave an invited talk to Sberbank.
+
 * 🔥 **[06/03]** [SDAIA](https://sdaia.gov.sa/en) invited GPTSwarm team (Wenyi, Francesco, Dmitrii) for a 5 hour seminar.
 
 * 🔥 **[06/02]** GPTSwarm has been selected as **Oral Presentation** (top 1.5%, 144 in 9,473) by [ICML2024](https://icml.cc)! Congratulation!
