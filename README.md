@@ -17,9 +17,11 @@
 
 ## News
 
-* 🔥 **[07/21]** Mingchen gave an invited talk to IA-CAS.
+* 🔥 **[07/05]** Mingchen gave an invited talk to WAIC.
 
-* 🔥 **[07/20]** Dmitrii gave an invited talk to Sberbank.
+* 🔥 **[06/21]** Mingchen gave an invited talk to IA-CAS.
+
+* 🔥 **[06/20]** Dmitrii gave an invited talk to Sberbank.
 
 * 🔥 **[06/03]** [SDAIA](https://sdaia.gov.sa/en) invited GPTSwarm team (Wenyi, Francesco, Dmitrii) for a 5 hour seminar.
 
