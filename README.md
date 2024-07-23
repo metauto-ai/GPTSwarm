@@ -15,6 +15,21 @@
 * It lets you build LLM-based agents from graphs.
 * It enables the customized and automatic self-organization of agent swarms with self-improvement capabilities.
 
+## About GPTSwarm
+
+<img src="assets/gpt_swarm.png" alt="Framework" width="799">
+
+At a granular level, GPTSwarm is a library that includes the following components: 
+
+
+| Module | Description |
+| ---- | --- |
+| [**swarm.environment**](swarm/environment) | Domain-specific operations, agents, tools, and tasks |
+| [**swarm.graph**](swarm/graph) | Graph-related functions for creating and executing agent graphs and swarm composite graphs |
+| [**swarm.llm**](swarm/llm) | Interface for selecting LLM backends and calculating their operational costs |
+| [**swarm.memory**](swarm/memory) | Index-based memory |
+| [**swarm.optimizer**](swarm/optimizer) | Optimization algorithms designed to enhance agent performance and overall swarm efficiency |
+
 ## Visualizations of the graphs
 
 <img src="assets/swarm_vis.png" alt="Edge optimization" width="800">
@@ -49,20 +64,7 @@ Here is the edge optimization process that updates edge probabilities toward imp
 
 <img src="assets/edge_opt.gif" alt="Edge optimization" width="300">
 
-## About GPTSwarm
 
-<img src="assets/gpt_swarm.png" alt="Framework" width="799">
-
-At a granular level, GPTSwarm is a library that includes the following components: 
-
-
-| Module | Description |
-| ---- | --- |
-| [**swarm.environment**](swarm/environment) | Domain-specific operations, agents, tools, and tasks |
-| [**swarm.graph**](swarm/graph) | Graph-related functions for creating and executing agent graphs and swarm composite graphs |
-| [**swarm.llm**](swarm/llm) | Interface for selecting LLM backends and calculating their operational costs |
-| [**swarm.memory**](swarm/memory) | Index-based memory |
-| [**swarm.optimizer**](swarm/optimizer) | Optimization algorithms designed to enhance agent performance and overall swarm efficiency |
 
 
 ## Quickstart
