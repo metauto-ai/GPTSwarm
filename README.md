@@ -15,6 +15,10 @@
 * It lets you build LLM-based agents from graphs.
 * It enables the customized and automatic self-organization of agent swarms with self-improvement capabilities.
 
+## Visualizations of the graphs
+
+<img src="assets/swarm_vis.png" alt="Edge optimization" width="800">
+
 ## News
 
 * 🔥 **[07/05]** Mingchen gave an invited talk to WAIC.
@@ -126,9 +130,6 @@ Here is a Youtube video on how to run the demo notebooks:
 
 <img src="assets/swarm_v3.png" alt="Edge optimization" width="500">
 
-## More Visualizations
-
-<img src="assets/swarm_vis.png" alt="Edge optimization" width="800">
 
 ## Running with a local LLM
 
