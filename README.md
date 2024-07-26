@@ -36,6 +36,8 @@ At a granular level, GPTSwarm is a library that includes the following component
 
 ## News
 
+* 🔥 **[07/25]** Louis and Francesco gave the oral presentation in ICML 2024.
+
 * 🔥 **[07/05]** Mingchen gave an invited talk to WAIC.
 
 * 🔥 **[06/21]** Mingchen gave an invited talk to IA-CAS.
