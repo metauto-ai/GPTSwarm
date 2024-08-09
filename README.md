@@ -36,7 +36,7 @@ At a granular level, GPTSwarm is a library that includes the following component
 
 ## News
 
-* 🔥 **[08/02]** Mingchen attended an invited seminar with Shanghai AI Lab.
+* 🔥 **[08/07]** Mingchen attended an invited seminar with Shanghai AI Lab.
 
 * 🔥 **[07/25]** Louis and Francesco gave the oral presentation in ICML 2024.
 
