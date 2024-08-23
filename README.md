@@ -164,11 +164,10 @@ Please read our [developer document](DEVELOPMENT.md) if you are interested in co
 ## Citation
 Please cite our paper if you find the library useful or interesting.
 ```
-@article{zhuge2024language,
-  title={Language Agents as Optimizable Graphs},
-  author={Zhuge, Mingchen and Wang, Wenyi and Kirsch, Louis and Faccio, Francesco and Khizbullin, Dmitrii and Schmidhuber, Jurgen},
-  journal={arXiv preprint arXiv:2402.16823},
-  year={2024}
+@inproceedings{zhugegptswarm,
+  title={GPTSwarm: Language Agents as Optimizable Graphs},
+  author={Zhuge, Mingchen and Wang, Wenyi and Kirsch, Louis and Faccio, Francesco and Khizbullin, Dmitrii and Schmidhuber, J{\"u}rgen},
+  booktitle={Forty-first International Conference on Machine Learning}
 }
 ```
 
