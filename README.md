@@ -36,6 +36,8 @@ At a granular level, GPTSwarm is a library that includes the following component
 
 ## News
 
+* 😎 **[10/12]** Respect OpenAI's [Swarm](https://github.com/openai/swarm), but [GPTSwarm](https://github.com/metauto-ai/GPTSwarm) is the better option.
+
 * 🔥 **[08/07]** Mingchen attended an invited seminar with Shanghai AI Lab.
 
 * 🔥 **[07/25]** Louis and Francesco gave the oral presentation in ICML 2024.
