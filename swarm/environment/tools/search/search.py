@@ -2,16 +2,27 @@
 # -*- coding: utf-8 -*-
 
 import os
-from dotenv import load_dotenv
 from googleapiclient.discovery import build
 import requests
 import ast
-load_dotenv()
 
+class BingSearchEngine():
+    def __init__(self) -> None:
+        self.api_key = os.getenv("BING_API_KEY")
+        self.endpoint = "https://api.bing.microsoft.com/v7.0/search"
+        self.headers = {"Ocp-Apim-Subscription-Key": self.api_key}
+    
+    def search(self, query: str, num: int = 3):
+        try:
+            params = {"q": query, "count": num}
+            res = requests.get(self.endpoint, headers=self.headers, params=params)
+            res = res.json()
+            return '\n'.join([item['snippet'] for item in res['webPages']['value']])
+        except:
+            return 'Cannot get search results from Bing API'
 
 class GoogleSearchEngine():
     def __init__(self) -> None:
-        load_dotenv()
         self.api_key = os.getenv("GOOGLE_API_KEY")
         self.cse_id = os.getenv("GOOGLE_CSE_ID")
         self.service = build("customsearch", "v1", developerKey=self.api_key)
@@ -21,8 +32,7 @@ class GoogleSearchEngine():
             res = self.service.cse().list(q=query, cx=self.cse_id, num=num).execute()
             return '\n'.join([item['snippet'] for item in res['items']])
         except:
-            return ''
-
+            return 'Cannot get search results from Google API'
 
 class SearchAPIEngine():
 
@@ -45,7 +55,7 @@ class SearchAPIEngine():
             if 'organic_results' in response.keys() and len(response['organic_results']) > 0:
                 
                 return '\n'.join([res['snippet'] for res in response['organic_results'][:item_num]])
-            return ''
+            return 'Cannot get search results from SearchAPI'
 
 
 
