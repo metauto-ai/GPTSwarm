@@ -15,11 +15,42 @@ from swarm.llm import LLMRegistry
 from swarm.optimizer.node_optimizer import MetaPromptOptimizer
 
 
-class DirectAnswer(Node): 
+"""
+Imagine someone who has to answer questions.
+They can be any person.
+Make a list of their possible specializations or social roles.
+Make the list as diverse as possible so that you expect them to answer the same question differently.
+Make a list of 20, list items only, no need for a description.
+"""
+
+class SpecialistAnswer(Node): 
+    role_list = [
+        "Botanist",
+        "Data Scientist",
+        "Social Worker",
+        "Journalist",
+        "Pilot",
+        "Anthropologist",
+        "Fitness Coach",
+        "Politician",
+        "Artist",
+        "Marine Biologist",
+        "Ethicist",
+        "Entrepreneur",
+        "Linguist",
+        "Archaeologist",
+        "Nurse",
+        "Graphic Designer",
+        "Philanthropist",
+        "Meteorologist",
+        "Sommelier",
+        "Cybersecurity Expert"
+    ]
+
     def __init__(self, 
                  domain: str,
                  model_name: Optional[str],
-                 operation_description: str = "Directly output an answer.",
+                 operation_description: str = "Answer as if you were a specialist in <something>.",
                  max_token: int = 50, 
                  id=None):
         super().__init__(operation_description, id, True)
@@ -28,13 +59,15 @@ class DirectAnswer(Node):
         self.llm = LLMRegistry.get(model_name)
         self.max_token = max_token
         self.prompt_set = PromptSetRegistry.get(domain)
-        self.role = self.prompt_set.get_role()
-        self.constraint = self.prompt_set.get_constraint()
 
+        # Override role with a specialist role.
+        idx_role = hash(self.id) % len(self.role_list)
+        self.role = self.role_list[idx_role]
+        print(f"Creating a node with specialization {self.role}")
 
     @property
     def node_name(self):
-        return self.__class__.__name__
+        return f"{self.__class__.__name__} {self.role}"
     
     async def node_optimize(self, input, meta_optmize=False):
         task = input["task"]
@@ -50,7 +83,6 @@ class DirectAnswer(Node):
 
         return role, constraint
 
-
     async def _execute(self, inputs: List[Any] = [], **kwargs):
         
         node_inputs = self.process_input(inputs)
@@ -62,22 +94,28 @@ class DirectAnswer(Node):
             if len(input) == 1 and 'task' in input: # Swarm input
                 task = input['task']
             else: # All other incoming edges
-                extra_knowledge = f"Opinion of {input['operation']} is \"{input['output']}\"."
+                extra_knowledge = f"Opinion of {input['operation']} is {input['output']}."
                 additional_knowledge.append(extra_knowledge)
 
         if task is None:
             raise ValueError(f"{self.__class__.__name__} expects swarm input among inputs")
 
-        user_message = "\n\n"
+        opinions = ""
         if len(additional_knowledge) > 0:
             for extra_knowledge in additional_knowledge:
-                user_message = user_message + extra_knowledge + "\n\n"
+                opinions = opinions + extra_knowledge + "\n\n"
 
-        prompt = self.prompt_set.get_answer_prompt(question=task)
-        user_message = user_message + prompt
+        question = self.prompt_set.get_answer_prompt(question=task)
+        user_message = question
+        if len(opinions) > 0:
+            user_message = f"""{user_message}
 
-        role, constraint = await self.node_optimize(input, meta_optmize=False)
-        system_message = f"You are a {role}. {constraint}"
+Take into accound the following opinions which may or may not be true:
+
+{opinions}"""
+
+        _, constraint = await self.node_optimize(input, meta_optmize=False)
+        system_message = f"You are a {self.role}. {constraint}"
 
         message = [Message(role="system", content=system_message),
                     Message(role="user", content=user_message)]
@@ -88,9 +126,9 @@ class DirectAnswer(Node):
             "task": task,
             "files": input.get("files", []),
             "input": task,
-            "role": role,
+            "role": self.role,
             "constraint": constraint,
-            "prompt": prompt,
+            "prompt": user_message,
             "output": response,
             "ground_truth": input.get("GT", []),
             "format": "natural language"
@@ -99,4 +137,4 @@ class DirectAnswer(Node):
         self.memory.add(self.id, execution)
 
         # self.log()
-        return outputs 
+        return outputs
