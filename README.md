@@ -171,6 +171,7 @@ We support local LM inference via [LM Studio](https://lmstudio.ai). Download the
 * [Jürgen Schmidhuber](http://www.idsia.ch/~juergen/) (Director @ KAUST AI Initiative; Scientific Director @ IDSIA)
 * [William FH](https://github.com/hinthornw) (Engineering @ LangChain)
 * [Lukas Vierling](https://www.linkedin.com/in/lukas-vierling/) (BS Student @ RWTH & HKUST)
+* [Sandro Hanea](https://github.com/sandrohanea) (Senior SDE @ Microsoft)
 
 Please read our [developer document](DEVELOPMENT.md) if you are interested in contributing.
 
