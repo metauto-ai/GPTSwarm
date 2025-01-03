@@ -96,8 +96,18 @@ poetry install
 
 ```python
 OPENAI_API_KEY="" # for OpenAI LLM backend
-SEARCHAPI_API_KEY="" # for Web Search
+BING_API_KEY="" # for Bing Web Search
+GOOGLE_API_KEY="" # for Google Web Search
+SEARCHAPI_API_KEY="" # for SearchAPI  Web Search
 ```
+
+**Selecting the Search Engine**
+
+The system will automatically select the appropriate search engine based on the following priority:
+ 
+  - [Bing API](https://www.microsoft.com/en-us/bing/apis/bing-web-search-api): If `BING_API_KEY` is provided
+  - [Search API](https://www.searchapi.io/): If `SEARCHAPI_API_KEY` is provided
+  - [Google API](https://developers.google.com/custom-search/?csw=1): If `GOOGLE_API_KEY` is provided
 
 **Getting started with GPTSwarm is easy. Quickly run a predefined swarm**
 
