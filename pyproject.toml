@@ -62,8 +62,9 @@ tqdm = "^4.66.1"
 transformers = "^4.36.2"
 wikipedia = "^1.4.0"
 astunparse = "^1.6.3"
-torch = "^2.1.0"
+torch = ">=2.1.0, <=2.2.2"
 async-timeout = "^4.0.3"
+numpy = "^1.25.2"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0.2"
