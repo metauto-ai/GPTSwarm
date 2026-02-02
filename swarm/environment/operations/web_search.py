@@ -9,7 +9,7 @@ from typing import List, Any, Optional
 
 from swarm.llm.format import Message
 from swarm.graph import Node
-from swarm.environment import GoogleSearchEngine, SearchAPIEngine, BingSearchEngine
+from swarm.environment import GoogleSearchEngine, SearchAPIEngine, BingSearchEngine, BoChaSearchEngine
 from swarm.utils.log import logger, swarmlog
 from swarm.utils.globals import Cost
 from swarm.environment.prompt.prompt_set_registry import PromptSetRegistry
@@ -41,6 +41,8 @@ class WebSearch(Node):
             return SearchAPIEngine()
         if os.getenv("GOOGLE_API_KEY"):
             return GoogleSearchEngine()
+        if os.getenv("BOCHA_API_KEY"):
+            return BoChaSearchEngine()
 
     async def _execute(self, inputs: List[Any] = [], max_keywords: int = 5, **kwargs):
 

@@ -6,6 +6,31 @@ from googleapiclient.discovery import build
 import requests
 import ast
 
+
+class BoChaSearchEngine():
+    def __init__(self) -> None:
+        self.api_key = os.getenv("BOCHA_API_KEY")
+
+    def search(self, query: str, num: int = 3):
+        try:
+            url = 'https://api.bochaai.com/v1/web-search'
+            headers = {
+                'Authorization': f'Bearer {self.api_key}',  # 请替换为你的API密钥
+                'Content-Type': 'application/json'
+            }
+            data = {
+                "query": query,
+            }
+
+            response = requests.post(url, headers=headers, json=data)
+
+            json_response = response.json()
+            res = json_response["data"]["webPages"]["value"]
+            print(res)
+            return '\n'.join([item['snippet'] for item in res])
+        except:
+            return 'Cannot get search results from BoCha API'
+
 class BingSearchEngine():
     def __init__(self) -> None:
         self.api_key = os.getenv("BING_API_KEY")
