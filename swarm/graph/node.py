@@ -110,25 +110,27 @@ class Node(ABC):
 
         self.outputs = []
         tasks = []
-        if not self.inputs and self.predecessors:
+        # if not self.inputs and self.predecessors:
+        # if len(self.inputs) == 0 and len(self.predecessors) > 0:
+        if True:
             if self.combine_inputs_as_one:
-                combined_inputs = []
+                combined_inputs = self.inputs
                 for predecessor in self.predecessors:
                     predecessor_outputs = predecessor.outputs
                     if predecessor_outputs is not None and isinstance(predecessor_outputs, list):
                         combined_inputs.extend(predecessor_outputs)
                 tasks.append(asyncio.create_task(self._execute(combined_inputs, **kwargs)))
             else:
-                for predecessor in self.predecessors:
+                for predecessor in self.predecessors: # TODO fix this branch as well, IT IS BROKEN
                     predecessor_outputs = predecessor.outputs
                     if isinstance(predecessor_outputs, list) and predecessor_outputs:
                         for predecessor_output in predecessor_outputs:
                             tasks.append(asyncio.create_task(self._execute(predecessor_output, **kwargs)))
-        elif self.inputs:
-            tasks = [asyncio.create_task(self._execute(input, **kwargs)) for input in self.inputs]
-        else:
-            warnings.warn("No input received.")
-            return
+        # elif self.inputs:
+        #     tasks = [asyncio.create_task(self._execute(input, **kwargs)) for input in self.inputs]
+        # else:
+        #     warnings.warn("No input received.")
+        #     return
 
         if tasks:
             results = await asyncio.gather(*tasks, return_exceptions=True)
