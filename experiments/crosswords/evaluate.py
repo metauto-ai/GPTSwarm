@@ -36,7 +36,7 @@ if __name__ == "__main__":
     swarm = Swarm(["CrosswordsReflection", "CrosswordsToT"], "crosswords", "gpt-4-1106-preview", #"gpt-3.5-turbo-1106",
                 final_node_class="ReturnAll", final_node_kwargs={}, edge_optimize=True,
                 init_connection_probability=init_connection_probability, connect_output_nodes_to_final_node=True)
-    swarm.connection_dist.load_state_dict(torch.load(f"result/crosswords_Jan15/{experiment_id}_edge_logits_{int(epochs * len(test_data) / batch_size) - 1}.pkl"))
+    swarm.connection_dist.load_state_dict(torch.load(f"result/crosswords_Jan15/{experiment_id}_edge_logits_{int(epochs * len(test_data) / batch_size) - 1}.pkl", weights_only=True, map_location="cpu"))
 
     num_edges = []
     for _ in range(100):
