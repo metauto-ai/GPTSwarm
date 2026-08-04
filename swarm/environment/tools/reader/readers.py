@@ -268,27 +268,8 @@ class ZipReader(Reader):
 
 class PythonReader(Reader):
     def parse(self, file_path: Path) -> str:
-        #swarmlog("SYS", f"Executing and reading Python file from {file_path}.", Cost.instance().value)
-        logger.info(f"Executing and reading Python file from {file_path}.")
-        execution_result = ""
-        error = ""
-        file_content = ""
-        try:
-            completed_process = subprocess.run(["python", file_path], capture_output=True, text=True, check=True)
-            execution_result = "Output:\n" + completed_process.stdout
-        except subprocess.CalledProcessError as e:
-            error = "Error:\n" + e.stderr
-        except Exception as e:
-            #swarmlog("ERROR", f"Error executing Python file: {e}", Cost.instance().value)
-            logger.info(f"Error executing Python file: {e}")
-
-        try:
-            with open(file_path, "r") as file:
-                file_content = "\nFile Content:\n" + file.read()
-        except Exception as e:
-            #swarmlog("ERROR", f"Error reading Python file: {e}", Cost.instance().value)
-            logger.info(f"Error reading Python file: {e}")
-        return file_content, execution_result, error
+        logger.info(f"Reading Python file from {file_path}.")
+        return Path(file_path).read_text(errors="replace")
 
 
 class IMGReader(Reader):
@@ -364,7 +345,7 @@ class FileReader:
         #swarmlog("SYS", f"Setting Reader to {type(self.reader).__name__}", Cost.instance().value)
         logger.info(f"Setting Reader to {type(self.reader).__name__}")
 
-    def read_file(self, file_path: Path, task="describe the file") -> str:
+    def read_file(self, file_path: str, task="describe the file") -> str:
         suffix = '.' + file_path.split(".")[-1]
         self.set_reader(suffix)
         if isinstance(self.reader, IMGReader) or isinstance(self.reader, VideoReader):
@@ -394,18 +375,11 @@ class GeneralReader:
         file_content = self.file_reader.read_file(file, task)
         suffix = file.split(".")[-1]
 
-        if suffix in ['py', 'java', 'cpp', 'c', 'js', 'css', 'html', 'htm', 'xml']:
-            files_content += f'\nThe {suffix} file contains:\n---\n{file_content[0]}'
-            if file_content[1] != '':
-                files_content += f'\nExecution result:\n{file_content[1]}'
-            if file_content[2] != '':
-                files_content += f'\nExecution error message:\n{file_content[2]}'
-            files_content += '\n---'
-
-        elif suffix in ['txt', 'jsonl', 'csv', 'json', 'jsonld', 'jsonl', 'yaml', 'yml', 
-                        'xlsx', 'xls', 'jpg', 'png', 'jpeg', 'gif', 'bmp', 'mp3', 'wav', 
-                        'ogg', 'mp4', 'avi', 'mkv', 'mov', 'pdf', 'doc', 'docx', 'ppt', 
-                        'pptx', 'md', 'markdown', 'tex', 'zip', 'tar', 'gz', '7z', 'rar']:
+        if suffix in ['py', 'java', 'cpp', 'c', 'js', 'css', 'html', 'htm', 'xml',
+                       'txt', 'jsonl', 'csv', 'json', 'jsonld', 'yaml', 'yml',
+                       'xlsx', 'xls', 'jpg', 'png', 'jpeg', 'gif', 'bmp', 'mp3', 'wav',
+                       'ogg', 'mp4', 'avi', 'mkv', 'mov', 'pdf', 'doc', 'docx', 'ppt',
+                       'pptx', 'md', 'markdown', 'tex', 'zip', 'tar', 'gz', '7z', 'rar']:
             files_content += f'\nThe {suffix} file contains:\n---\n{file_content}\n---'
 
         return files_content
