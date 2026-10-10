@@ -105,7 +105,7 @@ class EdgeWiseDistribution(ConnectDistribution):
             addable_if_not_used_learned_order = (not use_learned_order) and (not _graph.check_cycle(in_node, {out_node}, set()))
             if addable_if_not_used_learned_order or addable_if_use_learned_order:
                 edge_prob = torch.sigmoid(edge_logit / temperature)
-                if threshold:
+                if threshold is not None:
                     edge_prob = torch.tensor(1 if edge_prob > threshold else 0)
                 if torch.rand(1) < edge_prob:
                     out_node.add_successor(in_node)
